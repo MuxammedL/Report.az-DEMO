@@ -9,7 +9,7 @@ const Header = () => {
           <ul id="nav-social" className="navbar-bg">
             <li>
               <Link href="/muxammed" className="link">
-                <img src="https://report.az/public/images/logo-victory-az.png" alt="logo.svg" />
+                {/* <img src="https://report.az/public/images/logo-victory-az.png" alt="logo.svg" /> */}
               </Link>
             </li>
             <li>
