@@ -1,48 +1,115 @@
-nav {
-  .navbar-bg {
-    padding: 0px 8px;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    li {
-      .link {
-        display: block;
-        img {
-          width: 130px;
-          height: 80px;
-          object-fit: contain;
+@import "../../style/globals";
+header {
+  .header-top {
+    display: none;
+    @media (min-width: 1200px) {
+      display: block;
+      font-size: 12px;
+      padding: 8px 0 9px;
+      color: #f5f5f5;
+      background: $primary_color;
+      .col-12 {
+        @include Flexible($f-wrap: wrap, $j-cont: space-between);
+        .left,
+        .right {
+          @include Flexible($f-wrap: wrap, $a-items: center);
         }
-      }
-      .contact {
-        color: #4fb6a8;
-        margin: 0 2.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        line-height: 1;
-        span {
-          font-size: 14.4px;
-        }
-        a {
-          font-size: 1.8rem;
-          font-weight: bolder;
-          text-decoration: none;
-          color: #4fb6a8;
-        }
-      }
-    }
-    @media (min-width: 768px) {
-      padding: 0 40px;
-      li {
-        .link {
+        .weather {
+          position: relative;
+          margin-right: 15px;
+          padding-right: 15px;
           img {
-            width: 100%;
+            max-width: 19px;
+            margin-right: 8px;
+          }
+          ul {
+            @include Flexible($f-wrap: wrap);
+            li {
+              display: inline-flex;
+              align-items: center;
+              &:not(:last-child) {
+                position: relative;
+                margin-right: 7px;
+                padding-right: 7px;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  top: 50%;
+                  right: -1px;
+                  width: 2px;
+                  height: 2px;
+                  background: $header_link_color;
+                  transform: translateY(-1px);
+                }
+              }
+            }
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            bottom: -9px;
+            right: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.2);
           }
         }
-        .contact {
-          padding-right: 7.5rem;
+        .currency {
+          width: 150px;
+          overflow: hidden;
+          height: 20px;
+          a {
+            @include Flexible($f-wrap: wrap, $gap: 5px, $a-items: center);
+          }
         }
+        .static-links {
+          margin-right: 15px;
+        }
+        .socials {
+          margin-left: 15px;
+          @include Flexible($f-wrap: wrap, $a-items: center);
+          li {
+            display: flex;
+            margin: 0 5px;
+            a {
+              display: inline-block;
+              .icon {
+                height: 19.2px;
+                padding: 1.3px 2px;
+                .social_icon {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+        .theme-switch {
+          position: relative;
+          margin: 0 0 0 15px;
+          padding: 0 0 0 15px;
+          button {
+            cursor: pointer;
+            @include Flexible($f-wrap: wrap, $a-items: center);
+            svg {
+              width: 16px;
+              height: 16px;
+              color: #f5f5f5;
+            }
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            bottom: -9px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+      a {
+        color: $header_link_color;
       }
     }
   }
