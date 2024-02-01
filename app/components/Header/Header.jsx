@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,9 +11,80 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
+
 import "./_header.scss";
+import { useEffect, useState, useRef } from "react";
 
 const Header = () => {
+  const [windSpeed, setWindSpeed] = useState();
+  const [celsius, setCelsius] = useState();
+  const [valute, setValute] = useState();
+  const [isDarkMode, setDarkMode] = useState(false);
+  const switchBTN = useRef();
+  const [currentValuteIndex, setCurrentValuteIndex] = useState(0);
+
+  async function getValute() {
+    try {
+      const res = await fetch(`https://questions-vksc.onrender.com/valute`);
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      const data = await res.json();
+      setValute(data);
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  }
+
+  async function getWeather() {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=baku&appid=daf23bcd6e2a7097959c3849d264e8be&units=metric`,
+      {
+        next: { revalidate: 300 },
+      }
+    );
+    const data = await res.json();
+    setCelsius(Math.round(data.main.temp));
+    setWindSpeed(Math.round(data.wind.speed));
+  }
+
+  const handleThemeSwitch = (e) => {
+    setDarkMode((prev) => !prev);
+  };
+  useEffect(() => {
+    getWeather();
+    getValute();
+  }, []);
+  useEffect(() => {
+    const body = document.querySelector("body");
+    isDarkMode
+      ? body.classList.add("darkMode")
+      : body.classList.remove("darkMode");
+  }, [isDarkMode]);
+  useEffect(() => {
+    const valutes = document.querySelectorAll(".valutes li");
+    valutes.forEach((el, index) => {
+      el.style.display = index === currentValuteIndex ? "block" : "none";
+    });
+  }, [valute]);
+
+  useEffect(() => {
+    const valutes = document.querySelectorAll(".valutes li");
+    const totalValutes = valutes.length;
+
+    const intervalId = setInterval(() => {
+      valutes.forEach((el, index) => {
+        const shouldBeVisible = index === currentValuteIndex;
+        el.style.display = shouldBeVisible ? "block" : "none";
+        el.style.animation = shouldBeVisible ? "goDown 1s" : "none";
+      });
+
+      setCurrentValuteIndex((prevIndex) => (prevIndex + 1) % totalValutes);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [currentValuteIndex, valute]);
+
   return (
     <>
       <header>
@@ -31,9 +103,9 @@ const Header = () => {
                             height={19}
                             alt="weather_pic"
                           />
-                          Bakı 5° C
+                          Bakı {celsius}° C
                         </li>
-                        <li>9 m/s</li>
+                        <li>{windSpeed} m/s</li>
                       </ul>
                     </Link>
                   </div>
@@ -45,8 +117,11 @@ const Header = () => {
                         height={19}
                         alt="currency_pic"
                       />
-                      <ul>
-                        <li>USD - 1.7000</li>
+                      <ul className="valutes">
+                        {valute &&
+                          Object.entries(valute).map(([currency, value]) => (
+                            <li key={currency}>{`${currency} - ${value}`}</li>
+                          ))}
                       </ul>
                     </Link>
                   </div>
@@ -133,12 +208,31 @@ const Header = () => {
                     </li>
                   </ul>
                   <div className="theme-switch">
-                    <button className="switcher">
-                      <FontAwesomeIcon icon={faMoon} className="social_icon" />
-                      {/* <FontAwesomeIcon icon={faSun} className="social_icon" /> */}
+                    <button
+                      className="switcher"
+                      ref={switchBTN}
+                      onClick={handleThemeSwitch}
+                    >
+                      {isDarkMode ? (
+                        <FontAwesomeIcon icon={faSun} className="social_icon" />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faMoon}
+                          className="social_icon"
+                        />
+                      )}
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="header-bottom">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                
               </div>
             </div>
           </div>
