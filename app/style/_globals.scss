@@ -30,8 +30,12 @@ video,
   border: 0;
   text-decoration: none;
   box-sizing: border-box;
+  color: inherit;
 }
-
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
 button,
 input {
   appearance: none;

@@ -20,6 +20,7 @@ const Header = () => {
   const [celsius, setCelsius] = useState();
   const [valute, setValute] = useState();
   const [isDarkMode, setDarkMode] = useState(false);
+  const [isClickedMenu, setIsClickedMenu] = useState(false);
   const switchBTN = useRef();
   const [currentValuteIndex, setCurrentValuteIndex] = useState(0);
 
@@ -51,9 +52,19 @@ const Header = () => {
   const handleThemeSwitch = (e) => {
     setDarkMode((prev) => !prev);
   };
+  const handleMenuToggle = () => {
+    setIsClickedMenu((prev) => !prev);
+  };
   useEffect(() => {
     getWeather();
     getValute();
+    const langs = document.querySelectorAll(".langs li a");
+    langs.forEach((lang) => {
+      lang.addEventListener("click", () => {
+        document.querySelector(".langs li a.active").classList.remove("active");
+        lang.classList.add("active");
+      });
+    });
   }, []);
   useEffect(() => {
     const body = document.querySelector("body");
@@ -87,6 +98,7 @@ const Header = () => {
 
   return (
     <>
+      
       <header>
         <div className="header-top">
           <div className="container">
@@ -232,7 +244,48 @@ const Header = () => {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                
+                <div className="logo-langs">
+                  <div
+                    className={`menu-toggler ${isClickedMenu && "active"}`}
+                    onClick={handleMenuToggle}
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <ul className="langs">
+                    <li>
+                      <a className="active" href="#">
+                        Azərbaycanca
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">Русский </a>
+                    </li>
+                    <li>
+                      <a href="#">English </a>
+                    </li>
+                  </ul>
+                  <div className="logo">
+                    <Link href="/">
+                      {isDarkMode ? (
+                        <Image
+                          src="/images/logo-light-az.webp"
+                          width={280}
+                          height={65}
+                          alt="logo"
+                        />
+                      ) : (
+                        <Image
+                          src="/images/logo-dark-az.webp"
+                          width={280}
+                          height={65}
+                          alt="logo"
+                        />
+                      )}
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
