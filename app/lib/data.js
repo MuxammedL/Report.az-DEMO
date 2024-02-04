@@ -1,10 +1,9 @@
 import { connectToDb } from "./utils";
-import { News,User } from "./models";
+import { News, User, Valute } from "./models";
 export const getPosts = async () => {
   try {
-    connectToDb()
-    const posts = await News.find();
-    return posts;
+    const res = await fetch("http://localhost:4000/news");
+    return res.json();
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch posts!");
@@ -13,14 +12,45 @@ export const getPosts = async () => {
 
 export const getPost = async (slug) => {
   try {
-    connectToDb();
-    const post = await News.findOne({ slug });
-    return post;
+    const res = await fetch(`http://localhost:4000/news?slug=${slug}`);
+    return res.json();
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch post!");
   }
 };
+
+// export const getValutes = async () => {
+//   try {
+//     connectToDb();
+//     const valutes = await Valute.find();
+//     return valutes;
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("Failed to fetch valutes!");
+//   }
+// };
+// export const getPosts = async () => {
+//   try {
+//     connectToDb();
+//     const posts = await News.find();
+//     return posts;
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("Failed to fetch posts!");
+//   }
+// };
+
+// export const getPost = async (slug) => {
+//   try {
+//     connectToDb();
+//     const post = await News.findOne({ slug });
+//     return post;
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("Failed to fetch post!");
+//   }
+// };
 
 export const getUser = async (id) => {
   try {

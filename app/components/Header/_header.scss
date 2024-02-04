@@ -1,4 +1,5 @@
 @import "../../style/globals";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 header {
   .header-top {
     display: none;
@@ -175,6 +176,100 @@ header {
           img {
             max-width: 150px;
             height: auto;
+          }
+        }
+      }
+    }
+    .navbar {
+      @include Flexible($j-cont: space-between);
+      position: relative;
+      padding: 18px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      ul {
+        width: 100%;
+        max-width: calc(100% - 60px);
+        @include Flexible($j-cont: space-between);
+        li {
+          a {
+            font-weight: 600;
+          }
+        }
+      }
+      .search-icon {
+        font-size: 18px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+      .search-block {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        .search-block-inner {
+          height: inherit;
+          position: relative;
+          &:before {
+            content: "\f002";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 600;
+            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            opacity: 0.5;
+            transform: translateY(-50%);
+          }
+          input {
+            width: 100%;
+            height: inherit;
+            padding: 18px 30px;
+            border: none;
+            letter-spacing: 0.45px;
+            outline: none;
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out,
+              box-shadow 0.15s ease-in-out;
+          }
+        }
+        .close-search {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          font-size: 18px;
+          width: 30px;
+          height: 30px;
+          margin-top: -15px;
+          border: 1px solid #353535;
+          cursor: pointer;
+          @include Flexible($j-cont: center, $a-items: center);
+        }
+        &.dark {
+          .search-block-inner {
+            &::before {
+              color: #fff;
+              opacity: 1;
+            }
+            input {
+              background-color: black;
+              color: white;
+              &::placeholder {
+                color: white;
+              }
+            }
+          }
+          .close-search {
+            border: 1px solid #fff;
           }
         }
       }

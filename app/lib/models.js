@@ -16,6 +16,19 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const valuteSchema = new mongoose.Schema(
+  {
+    valute: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
 const newsSchema = new mongoose.Schema(
   {
     title: {
@@ -58,6 +71,7 @@ const newsSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
-export const User = mongoose.models.User || mongoose.model("User", userSchema);
-export const News = mongoose.models.News || mongoose.model("Post", newsSchema);
+export const User = mongoose.models?.User || mongoose.model("User", userSchema);
+export const News = mongoose.models?.News || mongoose.model("News", newsSchema);
+export const Valute =
+  mongoose.models?.Valute || mongoose.model("Valute", valuteSchema);

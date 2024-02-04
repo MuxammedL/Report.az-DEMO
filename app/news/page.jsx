@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { getPosts } from "../lib/post";
-
+import { getPosts } from "../lib/data";
 
 const Blogs = async () => {
   const posts = await getPosts();
-
+  
   return (
     <main>
       <h1>Blogsss..</h1>
@@ -12,7 +11,10 @@ const Blogs = async () => {
         ? posts.map((post) => (
             <>
               <p className="text-2xl">{post.title}</p>
-              <Link href={`blogs/${post.id}`} className="text-3xl text-red-800">
+              <Link
+                href={`news/${post.slug}`}
+                className="text-3xl text-red-800"
+              >
                 Read More
               </Link>
             </>

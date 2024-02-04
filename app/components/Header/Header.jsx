@@ -11,22 +11,25 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
-
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./_header.scss";
 import { useEffect, useState, useRef } from "react";
+import Links from "./links/Links";
 
 const Header = () => {
   const [windSpeed, setWindSpeed] = useState();
   const [celsius, setCelsius] = useState();
   const [valute, setValute] = useState();
   const [isDarkMode, setDarkMode] = useState(false);
-  const [isClickedMenu, setIsClickedMenu] = useState(false);
+  const [isClickedMenu, setClickedMenu] = useState(false);
   const switchBTN = useRef();
   const [currentValuteIndex, setCurrentValuteIndex] = useState(0);
-
+  const [isSearching, setSearching] = useState(false);
   async function getValute() {
     try {
-      const res = await fetch(`https://questions-vksc.onrender.com/valute`);
+      const res = await fetch(`http://localhost:4000/valutes`, {
+        next: { revalidate: 300 },
+      });
       if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
       }
@@ -52,9 +55,11 @@ const Header = () => {
   const handleThemeSwitch = (e) => {
     setDarkMode((prev) => !prev);
   };
+
   const handleMenuToggle = () => {
-    setIsClickedMenu((prev) => !prev);
+    setClickedMenu((prev) => !prev);
   };
+
   useEffect(() => {
     getWeather();
     getValute();
@@ -66,12 +71,14 @@ const Header = () => {
       });
     });
   }, []);
+
   useEffect(() => {
     const body = document.querySelector("body");
     isDarkMode
       ? body.classList.add("darkMode")
       : body.classList.remove("darkMode");
   }, [isDarkMode]);
+
   useEffect(() => {
     const valutes = document.querySelectorAll(".valutes li");
     valutes.forEach((el, index) => {
@@ -98,7 +105,6 @@ const Header = () => {
 
   return (
     <>
-      
       <header>
         <div className="header-top">
           <div className="container">
@@ -286,6 +292,31 @@ const Header = () => {
                     </Link>
                   </div>
                 </div>
+                <nav className="navbar">
+                  <ul>
+                    <Links />
+                  </ul>
+                  <div className="search-icon">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  </div>
+                  <div
+                    className={`search-block ${isDarkMode ? "dark" : ""} ${
+                      isSearching ? "show" : ""
+                    }`}
+                  >
+                    <div className="search-block-inner">
+                      <input
+                        name="query"
+                        type="text"
+                        placeholder="Açar sözü daxil edin"
+                        required=""
+                      />
+                    </div>
+                    <div className="close-search ">
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </div>
+                </nav>
               </div>
             </div>
           </div>
