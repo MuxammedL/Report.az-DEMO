@@ -59,7 +59,9 @@ const Header = () => {
   const handleMenuToggle = () => {
     setClickedMenu((prev) => !prev);
   };
-
+  const handleSearchClick = () => {
+    setSearching((prev) => !prev);
+  };
   useEffect(() => {
     getWeather();
     getValute();
@@ -105,7 +107,7 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <header className={`${isDarkMode?"dark":""} `}>
         <div className="header-top">
           <div className="container">
             <div className="row">
@@ -296,7 +298,7 @@ const Header = () => {
                   <ul>
                     <Links />
                   </ul>
-                  <div className="search-icon">
+                  <div className="search-icon" onClick={handleSearchClick}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </div>
                   <div
@@ -312,7 +314,7 @@ const Header = () => {
                         required=""
                       />
                     </div>
-                    <div className="close-search ">
+                    <div className="close-search" onClick={handleSearchClick}>
                       <FontAwesomeIcon icon={faXmark} />
                     </div>
                   </div>
@@ -321,7 +323,23 @@ const Header = () => {
             </div>
           </div>
         </div>
+        <div className={`side-menu ${isDarkMode?"dark":""} ${isClickedMenu?"show":""}`}>
+          <ul className="mobile-menu">
+            <Links />
+          </ul>
+          <div className="mobile-search">
+            <div className="mobile-search-inner">
+              <input
+                name="query"
+                type="text"
+                placeholder="Açar sözü daxil edin"
+                required=""
+              />
+            </div>
+          </div>
+        </div>
       </header>
+      <div className={`content-overlay ${isClickedMenu?"show":""}`} ></div>
     </>
   );
 };
