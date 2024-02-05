@@ -9,7 +9,15 @@ export const getPosts = async () => {
     throw new Error("Failed to fetch posts!");
   }
 };
-
+export const getVideos = async () => {
+  try {
+    const res = await fetch("http://localhost:4000/videoNews");
+    return res.json();
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch videos!");
+  }
+};
 export const getPost = async (slug) => {
   try {
     const res = await fetch(`http://localhost:4000/news?slug=${slug}`);

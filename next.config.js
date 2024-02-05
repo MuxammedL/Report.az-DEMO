@@ -12,6 +12,7 @@ module.exports = {
       {
         protocol: "https",
         hostname: "static.report.az",
+        hostname: "www.youtube.com",
         pathname: "**",
       },
     ],
