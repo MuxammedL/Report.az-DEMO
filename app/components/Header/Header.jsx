@@ -76,9 +76,14 @@ const Header = () => {
 
   useEffect(() => {
     const body = document.querySelector("body");
-    isDarkMode
-      ? body.classList.add("darkMode")
-      : body.classList.remove("darkMode");
+    const main = document.querySelector("main");
+    if (isDarkMode) {
+      body.classList.add("darkMode");
+      main.classList.add("darkMode");
+    } else {
+      body.classList.remove("darkMode");
+      main.classList.remove("darkMode");
+    }
   }, [isDarkMode]);
 
   useEffect(() => {
@@ -107,7 +112,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`${isDarkMode?"dark":""} `}>
+      <header className={`${isDarkMode ? "dark" : ""} `}>
         <div className="header-top">
           <div className="container">
             <div className="row">
@@ -323,7 +328,11 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className={`side-menu ${isDarkMode?"dark":""} ${isClickedMenu?"show":""}`}>
+        <div
+          className={`side-menu ${isDarkMode ? "dark" : ""} ${
+            isClickedMenu ? "show" : ""
+          }`}
+        >
           <ul className="mobile-menu">
             <Links />
           </ul>
@@ -339,7 +348,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <div className={`content-overlay ${isClickedMenu?"show":""}`} ></div>
+      <div className={`content-overlay ${isClickedMenu ? "show" : ""}`}></div>
     </>
   );
 };

@@ -1,0 +1,38 @@
+.swiper {
+  .swiper-slide {
+    margin-bottom: 30px;
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .swiper-pagination {
+    bottom: 0 !important;
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      margin: 0 7px !important;
+      background: rgba(53, 53, 53, 0.4);
+      opacity: 1;
+      &.swiper-pagination-bullet-active {
+        background: #353535;
+      }
+    }
+  }
+}
+body{
+  &.darkMode{
+    .swiper{
+      background-color: red;
+    }
+  }
+}
