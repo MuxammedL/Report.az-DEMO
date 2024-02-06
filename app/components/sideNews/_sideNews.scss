@@ -1,0 +1,104 @@
+@import "../../style/partials/mixin";
+
+.latest-news-section {
+  margin-bottom: 20px;
+  .latest-news {
+    height: 1842.75px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      background-color: #efefef;
+      width: 5px;
+      &-thumb {
+        background-color: hsla(0, 0%, 67%, 0.6);
+        border-radius: 6px;
+      }
+    }
+    .news-item {
+      @include Flexible($a-items: center);
+      padding: 15px 10px;
+      border-bottom: 1px solid #f2f2f2;
+      transition: background 0.5s ease;
+      .time {
+        font-size: 16px;
+        width: 60px;
+        opacity: 0.5;
+        span {
+          display: block;
+        }
+      }
+      .info {
+        width: calc(100% - 60px);
+        .title {
+          display: block;
+          margin: 0 0 7px;
+        }
+        .category {
+          font-size: 12px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          opacity: 0.5;
+        }
+      }
+      &.highlighted {
+        background: #f2f2f2;
+        .info {
+          .title {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+.show-all {
+  a {
+    position: relative;
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 18px 25px;
+    text-transform: uppercase;
+    margin: 0 auto;
+    background: #fbfbfb;
+    transition: 0.2s ease;
+    &::after {
+      content: "\f30b";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 600;
+      font-size: 17px;
+      position: absolute;
+      top: 50%;
+      right: 25px;
+      transform: translateY(-50%);
+    }
+    &:hover {
+      background: #f6f6f6;
+    }
+  }
+}
+body {
+  &.darkMode {
+    .latest-news-section {
+      .latest-news {
+        &::-webkit-scrollbar {
+          background-color: #2a2a2a;
+          &-thumb {
+            background-color: hsla(0, 0%, 63%, 0.402);
+          }
+        }
+        .news-item {
+          &.highlighted {
+            background: #1a1a1a;
+          }
+        }
+      }
+    }
+    .show-all a {
+      background: #353535;
+      &:hover {
+        background: #303030;
+      }
+    }
+  }
+}

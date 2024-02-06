@@ -1,8 +1,22 @@
 import Image from "next/image";
 import VideoSwiper from "./components/videoSwiper/videoSwiper";
-import { getVideos } from "./lib/data";
-import './_home.scss'
+import { getPosts, getVideos } from "./lib/data";
+import "./_home.scss";
+import "./utilities.css"
+import Link from "next/link";
+import SideNews from "./components/sideNews/sideNews";
+
+
 export default async function Home() {
+  const posts = await getPosts();
+  const sortByDate = (dataArray) => {
+    return dataArray
+      .slice()
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  };
+
+  //  Usage example
+  const sortedPosts = sortByDate(posts);
   const videos = await getVideos();
   return (
     <section className="entrance">
@@ -11,11 +25,8 @@ export default async function Home() {
           <div className="col-lg-8"></div>
           <div className="col-lg-4">
             <div className="side-news">
-              <div className="video-news">
-                <h2 className="section-title">Video xəbərlər</h2>
                 <VideoSwiper videos={videos} />
-              </div>
-              <div className="latest-news"></div>
+                <SideNews posts={sortedPosts}/>
             </div>
           </div>
         </div>

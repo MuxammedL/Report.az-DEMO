@@ -8,7 +8,7 @@ header {
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   z-index: 50;
-  @media (min-width:1200px) {
+  @media (min-width: 1200px) {
     position: relative;
     border-bottom: 0;
   }
@@ -289,21 +289,6 @@ header {
             cursor: pointer;
             @include Flexible($j-cont: center, $a-items: center);
           }
-          &.dark {
-            .search-block-inner {
-              &::before {
-                color: #fff;
-                opacity: 1;
-              }
-              input {
-                background-color: black;
-                color: white;
-              }
-            }
-            .close-search {
-              border: 1px solid #fff;
-            }
-          }
         }
       }
     }
@@ -366,35 +351,6 @@ header {
       display: none;
     }
   }
-  &.dark {
-    background-color: black;
-    .header-bottom {
-      .logo-langs {
-        .menu-toggler {
-          span {
-            background-color: #fff;
-          }
-        }
-      }
-    }
-    .side-menu {
-      background-color: black;
-      .mobile-menu {
-        li {
-          border-bottom: 1px solid #353535;
-        }
-      }
-      .mobile-search {
-        .mobile-search-inner {
-          input {
-            color: #fff;
-            background-color: black;
-            border: 1px solid #353535;
-          }
-        }
-      }
-    }
-  }
 }
 .content-overlay {
   position: fixed;
@@ -407,5 +363,55 @@ header {
   display: none;
   &.show {
     display: block;
+  }
+}
+body {
+  &.darkMode {
+    header {
+      background-color: black;
+      .header-bottom {
+        .logo-langs {
+          .menu-toggler {
+            span {
+              background-color: #fff;
+            }
+          }
+        }
+        .navbar {
+          .search-block {
+            .search-block-inner {
+              &::before {
+                color: #fff;
+                opacity: 1;
+              }
+              input {
+                background-color: black;
+                color: white;
+              }
+            }
+            .close-search {
+              border: 1px solid #fff;
+            }
+          }
+        }
+      }
+      .side-menu {
+        background-color: black;
+        .mobile-menu {
+          li {
+            border-bottom: 1px solid #353535;
+          }
+        }
+        .mobile-search {
+          .mobile-search-inner {
+            input {
+              color: #fff;
+              background-color: black;
+              border: 1px solid #353535;
+            }
+          }
+        }
+      }
+    }
   }
 }

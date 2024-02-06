@@ -77,13 +77,9 @@ const Header = () => {
   useEffect(() => {
     const body = document.querySelector("body");
     const main = document.querySelector("main");
-    if (isDarkMode) {
-      body.classList.add("darkMode");
-      main.classList.add("darkMode");
-    } else {
-      body.classList.remove("darkMode");
-      main.classList.remove("darkMode");
-    }
+    isDarkMode
+      ? body.classList.add("darkMode")
+      : body.classList.remove("darkMode");
   }, [isDarkMode]);
 
   useEffect(() => {
@@ -112,7 +108,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={`${isDarkMode ? "dark" : ""} `}>
+      <header>
         <div className="header-top">
           <div className="container">
             <div className="row">
@@ -306,11 +302,7 @@ const Header = () => {
                   <div className="search-icon" onClick={handleSearchClick}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </div>
-                  <div
-                    className={`search-block ${isDarkMode ? "dark" : ""} ${
-                      isSearching ? "show" : ""
-                    }`}
-                  >
+                  <div className={`search-block ${isSearching ? "show" : ""}`}>
                     <div className="search-block-inner">
                       <input
                         name="query"
@@ -328,11 +320,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div
-          className={`side-menu ${isDarkMode ? "dark" : ""} ${
-            isClickedMenu ? "show" : ""
-          }`}
-        >
+        <div className={`side-menu ${isClickedMenu ? "show" : ""}`}>
           <ul className="mobile-menu">
             <Links />
           </ul>

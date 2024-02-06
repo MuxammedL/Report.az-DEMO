@@ -11,11 +11,16 @@ module.exports = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "static.report.az",
         hostname: "www.youtube.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "static.report.az",
         pathname: "**",
       },
     ],
   },
   reactStrictMode: true,
+  
 };

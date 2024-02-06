@@ -29,10 +29,17 @@
     }
   }
 }
-body{
-  &.darkMode{
-    .swiper{
-      background-color: red;
+body {
+  &.darkMode {
+    .swiper {
+      .swiper-pagination {
+        .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.4);
+          &.swiper-pagination-bullet-active {
+            background: #fff;
+          }
+        }
+      }
     }
   }
 }
