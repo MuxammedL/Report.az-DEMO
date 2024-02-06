@@ -63,7 +63,7 @@ const MainSwiper = ({ posts }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <>
-      <div className="introSlider">
+      <div className="intro-slider">
         <Swiper
           modules={[FreeMode, Autoplay, Thumbs]}
           thumbs={{
