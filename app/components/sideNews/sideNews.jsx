@@ -12,6 +12,16 @@ function getTimeFromISODate(isoDate) {
   // Return the formatted time string (HH:MM:SS)
   return `${hours}:${minutes}`;
 }
+function createSlug(str) {
+  return str
+    .toLowerCase() // convert to lowercase
+    .replace(/ə/g, "e") // replace 'ə' with 'e'
+    .replace(/[^\w\s-]/g, "") // remove non-word characters except spaces and hyphens
+    .replace(/\s+/g, "-") // replace spaces with hyphens
+    .replace(/--+/g, "-") // replace consecutive hyphens with a single hyphen
+    .trim(); // trim leading and trailing spaces and hyphens
+}
+
 const SideNews = ({ posts }) => {
   return (
     <>
@@ -34,11 +44,14 @@ const SideNews = ({ posts }) => {
               <div className="info">
                 <Link
                   className="title"
-                  href="/komanda/hendbol-uzre-azerbaycan-cempionati-lider-en-yaxin-izleyicisi-ile-qarsilasacaq/"
+                  href={`/${createSlug(item.category)}/${item.slug}`}
                 >
                   <span className="feed-news-title">{item.title}</span>
                 </Link>
-                <Link className="category" href="/komanda">
+                <Link
+                  className="category"
+                  href={`/${createSlug(item.category)}`}
+                >
                   {item.category}
                 </Link>
               </div>

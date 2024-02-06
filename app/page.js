@@ -2,10 +2,10 @@ import Image from "next/image";
 import VideoSwiper from "./components/videoSwiper/videoSwiper";
 import { getPosts, getVideos } from "./lib/data";
 import "./_home.scss";
-import "./utilities.css"
+import "./utilities.css";
 import Link from "next/link";
 import SideNews from "./components/sideNews/sideNews";
-
+import MainSwiper from "./components/mainSwiper/mainSwiper";
 
 export default async function Home() {
   const posts = await getPosts();
@@ -22,11 +22,13 @@ export default async function Home() {
     <section className="entrance">
       <div className="container">
         <div className="row">
-          <div className="col-lg-8"></div>
+          <div className="col-lg-8">
+            <MainSwiper posts={posts.slice(0, 5)} />
+          </div>
           <div className="col-lg-4">
             <div className="side-news">
-                <VideoSwiper videos={videos} />
-                <SideNews posts={sortedPosts}/>
+              {/* <VideoSwiper videos={videos} /> */}
+              <SideNews posts={sortedPosts} />
             </div>
           </div>
         </div>

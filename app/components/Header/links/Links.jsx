@@ -16,11 +16,13 @@ const links = [
 function createSlug(str) {
   return str
     .toLowerCase() // convert to lowercase
+    .replace(/ə/g, "e") // replace 'ə' with 'e'
     .replace(/[^\w\s-]/g, "") // remove non-word characters except spaces and hyphens
     .replace(/\s+/g, "-") // replace spaces with hyphens
     .replace(/--+/g, "-") // replace consecutive hyphens with a single hyphen
     .trim(); // trim leading and trailing spaces and hyphens
 }
+
 const Links = () => {
   const [posts, setPosts] = useState();
   const [uniqueLinks, setUniqueLinks] = useState();
