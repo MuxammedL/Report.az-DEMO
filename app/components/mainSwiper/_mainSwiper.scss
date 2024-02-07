@@ -58,27 +58,6 @@
             font-size: 16px;
             margin: 13px 0;
           }
-          .news-date {
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 0.3px;
-            opacity: 0.5;
-            span:first-child {
-              display: inline-block;
-              position: relative;
-              padding: 0 7px 0 0;
-              margin: 0 7px 0 0;
-              &::after {
-                content: "";
-                position: absolute;
-                top: calc(50% - 1px);
-                right: -2px;
-                width: 2px;
-                height: 2px;
-                background-color: #fff;
-              }
-            }
-          }
         }
       }
     }
@@ -118,6 +97,7 @@
       margin-top: 10px;
       .swiper-slide {
         &.thumbs-swiper-slide {
+          cursor: pointer;
           &.swiper-slide-thumb-active {
             opacity: 0.65;
             cursor: auto;
@@ -139,6 +119,27 @@
     .swiper:first-child .swiper-slide .slide-news .title {
       letter-spacing: 0.7px;
       font-size: 26px;
+    }
+  }
+}
+.news-date {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  opacity: 0.5;
+  span:first-child {
+    display: inline-block;
+    position: relative;
+    padding: 0 7px 0 0;
+    margin: 0 7px 0 0;
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(50% - 1px);
+      right: -2px;
+      width: 2px;
+      height: 2px;
+      background-color: #fff;
     }
   }
 }

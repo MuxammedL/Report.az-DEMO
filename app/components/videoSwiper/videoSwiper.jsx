@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Scrollbar, Autoplay } from "swiper/modules";
 import "./_videoSwiper.scss";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 const VideoSwiper = ({ videos}) => {
   return (

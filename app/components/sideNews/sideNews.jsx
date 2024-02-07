@@ -44,7 +44,7 @@ const SideNews = ({ posts }) => {
               <div className="info">
                 <Link
                   className="title"
-                  href={`/${createSlug(item.category)}/${item.slug}`}
+                  href={`/${createSlug(item.sub_category)}/${item.slug}`}
                 >
                   <span className="feed-news-title">{item.title}</span>
                 </Link>

@@ -72,9 +72,9 @@ const MainSwiper = ({ posts }) => {
           }}
           spaceBetween={10}
           loop={true}
-            autoplay={{
-              delay: 5000,
-            }}
+          autoplay={{
+            delay: 5000,
+          }}
         >
           {posts.map((item, index) => (
             <SwiperSlide key={index}>
@@ -90,15 +90,13 @@ const MainSwiper = ({ posts }) => {
               <div className="slide-news">
                 <Link
                   className="news-category"
-                  href={`/${createSlug(item.category)}/${createSlug(
-                    item.sub_category
-                  )}`}
+                  href={`/${createSlug(item.sub_category)}`}
                 >
                   {item.sub_category}
                 </Link>
                 <Link
                   className="title"
-                  href={`/${createSlug(item.category)}/${item.slug}`}
+                  href={`/${createSlug(item.sub_category)}/${item.slug}`}
                 >
                   {item.title}
                 </Link>
