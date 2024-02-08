@@ -1,0 +1,16 @@
+.controllers {
+  display: none;
+  @media (min-width: 576px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    .next-slide,
+    .prev-slide {
+      border: 1px solid #353535;
+      background-color: transparent;
+      svg{
+        height: 15px;
+      }
+    }
+  }
+}

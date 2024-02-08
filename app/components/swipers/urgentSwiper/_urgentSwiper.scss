@@ -31,6 +31,7 @@
       margin: 0;
       position: relative;
       overflow: visible;
+      width: calc(100% - 74px);
       .swiper-wrapper {
         align-items: center;
       }
@@ -58,7 +59,7 @@
       }
     }
   }
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     flex-wrap: nowrap;
     .breaking-news-slider {
       .swiper {

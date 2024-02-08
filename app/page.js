@@ -7,6 +7,7 @@ import SideNews from "./components/swipers/sideNews/sideNews";
 import MainSwiper from "./components/swipers/mainSwiper/mainSwiper";
 import UrgentSwiper from "./components/swipers/urgentSwiper/urgentSwiper";
 import { createSlug, getTimeFromISODate, formatDate } from "./lib/functions";
+import ImportantNewsSwiper from "./components/swipers/importantNewsSwiper/importantNewsSwiper";
 
 export default async function Home() {
   const posts = await getPosts();
@@ -103,10 +104,17 @@ export default async function Home() {
                 ))}
               </div>
             </div>
+
+            <ImportantNewsSwiper posts={sortedPosts} />
+            <section className="other-category-news">
+              <div className="container">
+                <div className="row"></div>
+              </div>
+            </section>
           </div>
           <div className="col-lg-4">
             <div className="side-news">
-              {/* <VideoSwiper videos={videos} /> */}
+              <VideoSwiper videos={videos} />
               <SideNews posts={sortedPosts} />
             </div>
           </div>

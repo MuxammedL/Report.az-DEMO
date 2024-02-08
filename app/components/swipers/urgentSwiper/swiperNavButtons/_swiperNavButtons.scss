@@ -1,18 +1,21 @@
 .nav-buttons {
   position: absolute;
-  top: 40px;
-  right: 0;
+  top: 0;
+  right: -76px;
   display: flex;
   align-items: center;
   z-index: 2;
-  width: 85px;
+  height: 100%;
   background-color: #ffffff;
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     left: 100%;
     bottom: 0;
     top: 0;
+    width: 85px;
+    height: auto;
   }
 }
+
 .next-slide,
 .prev-slide {
   margin-left: 10px;
@@ -27,6 +30,9 @@
   align-items: center;
   justify-content: center;
 }
+// .nav-buttons .prev-slide{
+//   margin-left: 0;
+// }
 .next-slide svg,
 .prev-slide svg {
   height: 18px;
