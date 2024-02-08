@@ -18,7 +18,15 @@ const SinglePost = async ({ params }) => {
     <>
       {post && (
         <>
-          <Image src={post[0].image} width={200} height={100} alt={post[0].title} />
+          
+          <Image
+            src={post[0].image}
+            width={200}
+            height={100}
+            alt={post[0].title}
+          />
+          <p dangerouslySetInnerHTML={{ __html: `${post[0].text}` }}></p>
+          <p>{post.text}</p>
           <Suspense fallback={<div>Loading...</div>}>
             <PostUser userId={post[0].userId} />
           </Suspense>

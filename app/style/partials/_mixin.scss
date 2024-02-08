@@ -7,3 +7,10 @@
     align-content: $a-cont;
     gap: $gap;
 }
+@mixin Gridable($columns:null,$rows:null,$gap:null) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-template-rows: $rows;
+    gap:$gap;
+  }
+  

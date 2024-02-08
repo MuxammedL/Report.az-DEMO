@@ -1,11 +1,12 @@
 import Image from "next/image";
-import VideoSwiper from "./components/videoSwiper/videoSwiper";
+import VideoSwiper from "./components/swipers/videoSwiper/videoSwiper";
 import { getPosts, getVideos } from "./lib/data";
 import "./_home.scss";
 import Link from "next/link";
-import SideNews from "./components/sideNews/sideNews";
-import MainSwiper from "./components/mainSwiper/mainSwiper";
-import UrgentSwiper from "./components/urgentSwiper/urgentSwiper";
+import SideNews from "./components/swipers/sideNews/sideNews";
+import MainSwiper from "./components/swipers/mainSwiper/mainSwiper";
+import UrgentSwiper from "./components/swipers/urgentSwiper/urgentSwiper";
+import { createSlug, getTimeFromISODate, formatDate } from "./lib/functions";
 
 export default async function Home() {
   const posts = await getPosts();
@@ -33,30 +34,69 @@ export default async function Home() {
                   <div className="actual-news-block">
                     <div className="bg-image">
                       <Image
-                        data-cfsrc="https://static.report.az/photo/thunk_400.jpg"
-                        alt="Nurəddin Mehdixanlı: Azərbaycan xalqı dövlətini dünyada söz sahibi edən liderini seçdi"
-                        title="Nurəddin Mehdixanlı: Azərbaycan xalqı dövlətini dünyada söz sahibi edən liderini seçdi"
-                        src="https://static.report.az/photo/5b8a2d40-5b8d-3396-bfac-f501d42f74b3_490.jpg"
+                        src={item.image}
+                        alt={item.title}
+                        title={item.title}
+                        priority={true}
                         fill
+                        sizes="cover"
+                        style={{ objectFit: "cover" }}
                       />
                     </div>
-                    <div className="info flex">
-                      <a className="news-category" href="/daxili-siyaset/">
-                        Daxili siyasət
-                      </a>
-                      <a
-                        className="title"
-                        href="/daxili-siyaset/xalq-artisti-azerbaycan-xalqi-dovletini-dunyada-soz-sahibi-eden-liderini-secdi/"
-                        title="Nurəddin Mehdixanlı: Azərbaycan xalqı dövlətini dünyada söz sahibi edən liderini seçdi"
+                    <div className="info">
+                      <Link
+                        className="news-category"
+                        href={`/${item.sub_category}`}
                       >
-                        <span className="feed-news-title">
-                          Nurəddin Mehdixanlı: "Azərbaycan xalqı dövlətini
-                          dünyada söz sahibi edən liderini seçdi"
-                        </span>{" "}
-                      </a>
+                        {item.sub_category}
+                      </Link>
+                      <Link
+                        className="title"
+                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                        title={item.title}
+                      >
+                        <span className="feed-news-title">{item.title}</span>
+                      </Link>
                       <div className="news-date">
-                        <span>7 Fevral , 2024</span>
-                        <span>22:51</span>
+                        <span>{formatDate(item.date)}</span>
+                        <span>{getTimeFromISODate(item.date)}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="small-news">
+                {sortedPosts.slice(2, 14).map((item) => (
+                  <div className="small-news-item">
+                    <div className="image">
+                      <Link
+                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                        className="image-link"
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          title={item.title}
+                          width="0"
+                          height="0"
+                          sizes="100vw"
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </Link>
+                    </div>
+                    <div className="info">
+                      <Link
+                        className="title"
+                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                        title={item.link}
+                      >
+                        {item.title.length < 74
+                          ? item.title
+                          : `${item.title.slice(0, 74)}...`}
+                      </Link>
+                      <div className="news-date">
+                        <span>{formatDate(item.date)}</span>
+                        <span>{getTimeFromISODate(item.date)}</span>
                       </div>
                     </div>
                   </div>

@@ -1,26 +1,6 @@
+import { createSlug, getTimeFromISODate } from "@/app/lib/functions";
 import "./_sideNews.scss";
 import Link from "next/link";
-
-function getTimeFromISODate(isoDate) {
-  // Create a new Date object from the ISO date string
-  const date = new Date(isoDate);
-
-  // Extract hours, minutes, and seconds from the Date object
-  const hours = date.getHours().toString().padStart(2, "0");
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-
-  // Return the formatted time string (HH:MM:SS)
-  return `${hours}:${minutes}`;
-}
-function createSlug(str) {
-  return str
-    .toLowerCase() // convert to lowercase
-    .replace(/ə/g, "e") // replace 'ə' with 'e'
-    .replace(/[^\w\s-]/g, "") // remove non-word characters except spaces and hyphens
-    .replace(/\s+/g, "-") // replace spaces with hyphens
-    .replace(/--+/g, "-") // replace consecutive hyphens with a single hyphen
-    .trim(); // trim leading and trailing spaces and hyphens
-}
 
 const SideNews = ({ posts }) => {
   return (

@@ -1,7 +1,7 @@
 .breaking-news-container {
   position: relative;
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px;
   margin: 0 0 20px;
@@ -28,11 +28,10 @@
     width: 100%;
     overflow: hidden;
     .swiper {
-      width: calc(100% - 85px);
       margin: 0;
       position: relative;
       overflow: visible;
-      .swiper-wrapper{
+      .swiper-wrapper {
         align-items: center;
       }
       .swiper-slide {
@@ -46,6 +45,7 @@
             font-weight: 700;
             font-size: 15px;
             margin: 0 12px 0 0;
+            letter-spacing: normal;
           }
           .news-date {
             span {
@@ -55,6 +55,14 @@
             }
           }
         }
+      }
+    }
+  }
+  @media (min-width: 992px) {
+    flex-wrap: nowrap;
+    .breaking-news-slider {
+      .swiper {
+        width: calc(100% - 85px);
       }
     }
   }
