@@ -1,6 +1,8 @@
 import { connectToDb } from "./utils";
 import { News, User, Valute } from "./models";
-import { data } from "autoprefixer";
+
+
+
 export const getPosts = async () => {
   try {
     const res = await fetch("http://localhost:4000/news", {

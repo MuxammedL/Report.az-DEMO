@@ -76,7 +76,6 @@ const Header = () => {
 
   useEffect(() => {
     const body = document.querySelector("body");
-    const main = document.querySelector("main");
     isDarkMode
       ? body.classList.add("darkMode")
       : body.classList.remove("darkMode");

@@ -101,6 +101,43 @@
     }
   }
 }
+.other-category-news {
+  .row {
+    & > * {
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 45px;
+    }
+    .news-block {
+      .info {
+        .title {
+          font-weight: 600;
+        }
+      }
+    }
+    .small-news {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px 0 0;
+      margin: auto 0 0;
+      .small-news-item {
+        font-size: 80%;
+        font-weight: 400;
+        width: calc(50% - 5px);
+        .info {
+          .title {
+            font-size: 14px;
+            margin: 10px 0;
+            height: 72px;
+            overflow: hidden;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
 body {
   &.darkMode {
     .entrance {
