@@ -102,6 +102,7 @@
   }
 }
 .other-category-news {
+  padding: 45px 0 0;
   .row {
     & > * {
       display: flex;
@@ -138,25 +139,4 @@
     }
   }
 }
-body {
-  &.darkMode {
-    .entrance {
-      .col-lg-4 {
-        .side-news {
-          .latest-news-section {
-            .latest-news {
-              .news-item {
-                &.highlighted {
-                  background: #1a1a1a;
-                }
-              }
-            }
-          }
-          .show-all a {
-            background: #353535;
-          }
-        }
-      }
-    }
-  }
-}
+

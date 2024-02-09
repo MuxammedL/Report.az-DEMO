@@ -52,6 +52,27 @@
       }
     }
   }
+  .section-header {
+    position: relative;
+    .controllers {
+      display: none;
+      @media (min-width: 576px) {
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        top: -5px;
+        right: 0;
+        .next-slide,
+        .prev-slide {
+          border: 1px solid #353535;
+          background-color: transparent;
+          svg {
+            height: 15px;
+          }
+        }
+      }
+    }
+  }
 }
 body {
   &.darkMode {
@@ -67,6 +88,15 @@ body {
                 }
               }
             }
+          }
+        }
+      }
+      .section-header {
+        .controllers {
+          .next-slide,
+          .prev-slide {
+            color: #fff;
+            border: 1px solid #fff;
           }
         }
       }

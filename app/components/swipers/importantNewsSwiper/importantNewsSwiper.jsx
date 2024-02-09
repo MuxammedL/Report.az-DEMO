@@ -1,11 +1,12 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar, Autoplay, Navigation } from "swiper/modules";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./_importantNewsSwiper.scss";
 import Link from "next/link";
-import SwiperControllers from "./swiperNawButtons/swiperControllers";
 import {
   createSlug,
   formatDate,
@@ -20,8 +21,16 @@ const ImportantNewsSwiper = ({ posts }) => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div className="section-header flex">
+              <div className="section-header">
                 <h3 className="section-title">Ən vacib xəbərlər</h3>
+                <div className="controllers">
+                  <button className="prev-slide">
+                    <FontAwesomeIcon icon={faAngleLeft} />
+                  </button>
+                  <button className="next-slide">
+                    <FontAwesomeIcon icon={faAngleRight} />
+                  </button>
+                </div>
               </div>
               <Swiper
                 modules={[Navigation, Scrollbar, Autoplay]}
@@ -33,9 +42,10 @@ const ImportantNewsSwiper = ({ posts }) => {
                 }}
                 spaceBetween={30}
                 loop={true}
-                //   autoplay={{
-                //     delay: 6000,
-                //   }}
+                navigation={{
+                  nextEl: ".important-news .next-slide",
+                  prevEl: ".important-news .prev-slide",
+                }}
               >
                 {sortedByImportance.map((item, index) => (
                   <SwiperSlide key={index}>
@@ -87,7 +97,6 @@ const ImportantNewsSwiper = ({ posts }) => {
                     </div>
                   </SwiperSlide>
                 ))}
-                <SwiperControllers />
               </Swiper>
             </div>
           </div>

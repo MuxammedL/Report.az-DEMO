@@ -3,7 +3,7 @@ import VideoSwiper from "./components/swipers/videoSwiper/videoSwiper";
 import { getLinks, getPosts, getVideos } from "./lib/data";
 import "./_home.scss";
 import Link from "next/link";
-import SideNews from "./components/swipers/sideNews/sideNews";
+import SideNews from "./components/sideNews/sideNews";
 import MainSwiper from "./components/swipers/mainSwiper/mainSwiper";
 import UrgentSwiper from "./components/swipers/urgentSwiper/urgentSwiper";
 import { createSlug, getTimeFromISODate, formatDate } from "./lib/functions";
@@ -125,7 +125,7 @@ export default async function Home() {
             </div>
             <div className="col-lg-4">
               <div className="side-news">
-                {/* <VideoSwiper videos={videos} /> */}
+                <VideoSwiper videos={videos} />
                 <SideNews posts={sortedPosts} />
               </div>
             </div>

@@ -1,7 +1,6 @@
 .breaking-news-container {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   padding: 10px;
   margin: 0 0 20px;
@@ -16,12 +15,13 @@
     color: #fff;
     align-items: center;
     padding: 11px 15px;
-    margin: 0 14px 0 0;
     background: #ed0a0a;
     white-space: nowrap;
     svg {
       font-size: 16px;
-      margin: 0 5px 0 0;
+    }
+    span {
+      display: none;
     }
   }
   .breaking-news-slider {
@@ -30,8 +30,7 @@
     .swiper {
       margin: 0;
       position: relative;
-      overflow: visible;
-      width: calc(100% - 74px);
+      display: none;
       .swiper-wrapper {
         align-items: center;
       }
@@ -58,20 +57,108 @@
         }
       }
     }
+    .scrollingText {
+      display: flex;
+      flex-flow: row;
+      column-gap: 100px;
+      width: 100%;
+      .news-item {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+        a {
+          font-weight: 600;
+          font-size: 12px;
+          display: block;
+          color: #353535;
+        }
+      }
+    }
+    .nav-buttons {
+      display: none;
+      align-items: center;
+      position: absolute;
+      top: 10px;
+      right: 0;
+      padding: 0 10px 0 0;
+      z-index: 2;
+    }
   }
-  @media (min-width: 768px) {
+  @media (min-width: 576px) {
+    flex-wrap: wrap;
+    .label {
+      margin: 0 14px 0 0;
+      svg {
+        margin: 0 5px 0 0;
+      }
+      span {
+        display: block;
+      }
+    }
+    .breaking-news-slider {
+      .scrollingText {
+        display: none;
+      }
+      .swiper {
+        display: block;
+      }
+      .nav-buttons {
+        display: flex;
+      }
+    }
+  }
+  @media (min-width: 992px) {
     flex-wrap: nowrap;
     .breaking-news-slider {
       .swiper {
-        width: calc(100% - 85px);
+        width: calc(100% - 75px);
+      }
+      .nav-buttons {
+        top: 0;
+        bottom: 0;
       }
     }
+  }
+}
+.next-slide,
+.prev-slide {
+  margin-left: 10px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background: #f6f6f6;
+  color: #353535;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & svg {
+    height: 18px;
+  }
+  &:hover{
+    opacity: 1;
   }
 }
 body {
   &.darkMode {
     .breaking-news-container {
       border: 1px solid rgba(234, 234, 234, 0.2);
+      .breaking-news-slider{
+        .scrollingText {
+          .news-item {
+            a {
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+    .next-slide,
+    .prev-slide {
+      color: #fff;
+      background: rgba(251, 251, 251, 0.2);
+      border: none;
     }
   }
 }
