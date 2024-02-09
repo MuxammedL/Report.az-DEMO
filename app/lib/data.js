@@ -1,14 +1,12 @@
 import { connectToDb } from "./utils";
 import { News, User, Valute } from "./models";
 
-
-
 export const getPosts = async () => {
   try {
-    const res = await fetch("http://localhost:4000/news", {
-      next: { revalidate: 300 },
-    });
-    return res.json();
+    const res = await fetch("http://localhost:4000/news");
+    const data = await res.json();
+    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    return data;
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch posts!");

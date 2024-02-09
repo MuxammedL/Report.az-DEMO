@@ -10,7 +10,7 @@ const links = [
   },
   {
     title: "Son xəbərlər",
-    path: "/latest-news",
+    path: "son-xeberler",
   },
 ];
 function createSlug(str) {
@@ -30,6 +30,7 @@ const Links = () => {
     try {
       const res = await fetch("http://localhost:4000/news");
       const data = await res.json();
+      data.sort((a, b) => new Date(b.date) - new Date(a.date))
       setPosts(data);
     } catch (err) {
       console.log(err);
@@ -44,7 +45,7 @@ const Links = () => {
       posts.forEach((post) => {
         links.push({
           title: `${post.category}`,
-          path: `/${createSlug(post.category)}`,
+          path: `${createSlug(post.category)}`,
         });
       });
     setUniqueLinks(
@@ -59,7 +60,7 @@ const Links = () => {
       {uniqueLinks &&
         uniqueLinks.map((link) => (
           <li key={link.path}>
-            <Link href={link.path}>{link.title}</Link>
+            <Link href={`/${link.path}`}>{link.title}</Link>
           </li>
         ))}
     </>

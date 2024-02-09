@@ -1,6 +1,6 @@
 import Image from "next/image";
 import VideoSwiper from "./components/swipers/videoSwiper/videoSwiper";
-import { getLinks, getPosts, getVideos } from "./lib/data";
+import { getPosts, getVideos } from "./lib/data";
 import "./_home.scss";
 import Link from "next/link";
 import SideNews from "./components/sideNews/sideNews";
@@ -11,38 +11,31 @@ import ImportantNewsSwiper from "./components/swipers/importantNewsSwiper/import
 
 export default async function Home() {
   const posts = await getPosts();
-  const sortByDate = (dataArray) => {
-    return dataArray
-      .slice()
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-  };
-  const sortedPosts = sortByDate(posts);
   const videos = await getVideos();
   const links = [];
   posts.forEach((post) => {
     links.push({
       title: `${post.category}`,
-      path: `/${createSlug(post.category)}`,
+      path: `${createSlug(post.category)}`,
     });
   });
   const uniqueLinks = links.filter(
     (item, index, self) =>
       index === self.findIndex((i) => i.title === item.title)
   );
-  console.log(uniqueLinks);
   return (
     <>
       <section className="entrance">
         <div className="container">
           <div className="row">
             <div className="col-lg-8">
-              <MainSwiper posts={sortedPosts.slice(0, 5)} />
+              <MainSwiper posts={posts.slice(0, 5)} />
               <div className="latest-news">
-                <UrgentSwiper posts={sortedPosts.slice(0, 10)} />
+                <UrgentSwiper posts={posts.slice(0, 10)} />
               </div>
               <div className="main-news">
                 <div className="actual-news-blocks">
-                  {sortedPosts.slice(0, 2).map((item) => (
+                  {posts.slice(0, 2).map((item) => (
                     <div className="actual-news-block">
                       <div className="bg-image">
                         <Image
@@ -80,7 +73,7 @@ export default async function Home() {
                   ))}
                 </div>
                 <div className="small-news">
-                  {sortedPosts.slice(2, 14).map((item) => (
+                  {posts.slice(2, 14).map((item) => (
                     <div className="small-news-item">
                       <div className="image">
                         <Link
@@ -121,12 +114,12 @@ export default async function Home() {
                   ))}
                 </div>
               </div>
-              <ImportantNewsSwiper posts={sortedPosts} />
+              <ImportantNewsSwiper posts={posts} />
             </div>
             <div className="col-lg-4">
               <div className="side-news">
                 <VideoSwiper videos={videos} />
-                <SideNews posts={sortedPosts} />
+                <SideNews posts={posts} />
               </div>
             </div>
           </div>
@@ -146,7 +139,7 @@ export default async function Home() {
                     {link.title}
                   </Link>{" "}
                 </h2>
-                {sortedPosts
+                {posts
                   .filter((item) => item.category == link.title)
                   .slice(0, 1)
                   .map((item) => (
@@ -187,7 +180,7 @@ export default async function Home() {
                     </div>
                   ))}
                 <div className="small-news">
-                  {sortedPosts
+                  {posts
                     .filter((item) => item.category == link.title)
                     .slice(1, 3)
                     .map((item) => (
