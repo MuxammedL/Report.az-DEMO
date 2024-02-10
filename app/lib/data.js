@@ -39,7 +39,15 @@ export const getPost = async (slug) => {
     throw new Error("Failed to fetch post!");
   }
 };
-
+export const getSubCategories = async (subCat) => {
+  try {
+    const res = await fetch(`http://localhost:4000/news?sub_category=${subCat}`);
+    return res.json();
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch sub categories!");
+  }
+};
 // export const getValutes = async () => {
 //   try {
 //     connectToDb();

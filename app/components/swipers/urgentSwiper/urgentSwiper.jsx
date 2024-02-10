@@ -43,7 +43,7 @@ const UrgentSwiper = ({ posts }) => {
                 <div className="news-item">
                   <Link
                     className="title"
-                    href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                    href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
                   >
                     {item.title}
                   </Link>
@@ -61,7 +61,7 @@ const UrgentSwiper = ({ posts }) => {
                 <div className="news-item" key={item.id}>
                   <div className="news-title">
                     <Link
-                      href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                      href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
                     >
                       {item.title}
                     </Link>

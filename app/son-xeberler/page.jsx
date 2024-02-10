@@ -44,7 +44,7 @@ const LatestNewsPage = async () => {
                   >
                     <div className="image">
                       <Link
-                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                        href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
                         className="image-link"
                       >
                         <Image
@@ -61,7 +61,7 @@ const LatestNewsPage = async () => {
                     <div className="info">
                       <Link
                         className="title"
-                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
+                        href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
                         title={item.title}
                       >
                         {item.title}

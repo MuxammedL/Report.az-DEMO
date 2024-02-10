@@ -28,6 +28,7 @@
               $a-items: flex-start,
               $j-cont: flex-end
             );
+            z-index: 1;
             position: absolute;
             top: 0;
             left: 0;
@@ -47,6 +48,7 @@
                 position: absolute;
                 border: 1px dashed #fff;
                 opacity: 0.6;
+                z-index: -1;
               }
               &::before {
                 top: 20px;

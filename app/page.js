@@ -41,13 +41,13 @@ export default async function Home() {
                       <div className="info">
                         <Link
                           className="news-category"
-                          href={`/${item.sub_category}`}
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}`}
                         >
                           {item.sub_category}
                         </Link>
                         <Link
                           className="title"
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.title}
@@ -67,7 +67,7 @@ export default async function Home() {
                     <div className="small-news-item">
                       <div className="image">
                         <Link
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           className="image-link"
@@ -86,7 +86,7 @@ export default async function Home() {
                       <div className="info">
                         <Link
                           className="title"
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.link}
@@ -136,7 +136,7 @@ export default async function Home() {
                     <div className="news-block">
                       <div className="image">
                         <Link
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           className="image-link"
@@ -155,7 +155,7 @@ export default async function Home() {
                       <div className="info">
                         <Link
                           className="title"
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.title}
@@ -177,7 +177,7 @@ export default async function Home() {
                       <div className="small-news-item">
                         <div className="image">
                           <Link
-                            href={`/${createSlug(item.sub_category)}/${
+                            href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                               item.slug
                             }`}
                             className="image-link"
@@ -196,7 +196,7 @@ export default async function Home() {
                         <div className="info">
                           <Link
                             className="title"
-                            href={`/${createSlug(item.sub_category)}/${
+                            href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                               item.slug
                             }`}
                             title={item.link}

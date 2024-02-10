@@ -1,11 +1,40 @@
-export function createSlug(str) {
-  return str
-    .toLowerCase() // convert to lowercase
-    .replace(/ə/g, "e") // replace 'ə' with 'e'
-    .replace(/[^\w\s-]/g, "") // remove non-word characters except spaces and hyphens
-    .replace(/\s+/g, "-") // replace spaces with hyphens
-    .replace(/--+/g, "-") // replace consecutive hyphens with a single hyphen
-    .trim(); // trim leading and trailing spaces and hyphens
+export function createSlug(text) {
+  // Azerbaijani characters and their corresponding replacements
+  const azChars = {
+    ə: "e",
+    ç: "c",
+    ə: "e",
+    ğ: "g",
+    ı: "i",
+    ö: "o",
+    ş: "s",
+    ü: "u",
+    Ç: "C",
+    Ə: "E",
+    Ğ: "G",
+    I: "I",
+    İ: "I",
+    Ö: "O",
+    Ş: "S",
+    Ü: "U",
+  };
+
+  // Replace Azerbaijani characters with their equivalents
+  const slug = text
+    .replace(/[əçğıöşüÇƏĞIİÖŞÜ]/g, (char) => azChars[char] || char)
+    // Remove non-word characters
+    .replace(/[^\w\s-]/g, "")
+    // Replace spaces with dashes
+    .replace(/\s+/g, "-")
+    // Remove extra dashes
+    .replace(/--+/g, "-")
+    // Trim dashes from start and end
+    .replace(/^-+/, "")
+    .replace(/-+$/, "")
+    // Convert to lowercase
+    .toLowerCase();
+
+  return slug;
 }
 export function formatDate(isoDate) {
   const date = new Date(isoDate);

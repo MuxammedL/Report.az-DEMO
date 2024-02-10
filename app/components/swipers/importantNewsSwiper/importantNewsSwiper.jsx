@@ -52,7 +52,7 @@ const ImportantNewsSwiper = ({ posts }) => {
                     <div className="counted-news">
                       <div className="image">
                         <Link
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           className="image-link"
@@ -74,7 +74,7 @@ const ImportantNewsSwiper = ({ posts }) => {
                         </div>
                         <Link
                           className="title"
-                          href={`/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.link}
@@ -84,7 +84,7 @@ const ImportantNewsSwiper = ({ posts }) => {
                         <div className="category-date">
                           <Link
                             className="category"
-                            href={`/${item.sub_category}`}
+                            href={`/${createSlug(item.category)}/${item.sub_category}`}
                           >
                             {item.sub_category}
                           </Link>
