@@ -33,14 +33,14 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
         const today = new Date();
         const currentDayOfWeek = today.getDay();
         const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - currentDayOfWeek); // Setting start of the week to Sunday
-        startOfWeek.setHours(0, 0, 0, 0); // Set hours to 00:00:00
+        startOfWeek.setDate(today.getDate() - currentDayOfWeek - 6);
+        startOfWeek.setHours(0, 0, 0, 0);
         const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 7); // Adding 7 days to get the end of the week
+        endOfWeek.setDate(startOfWeek.getDate() + 5);
 
         return data.filter((item) => {
-          const itemDate = new Date(item.date); // Parsing ISO date string to Date object
-          return itemDate >= startOfWeek && itemDate < endOfWeek;
+          const itemDate = new Date(item.date);
+          return itemDate >= startOfWeek;
         });
       }
       filteredData = filterDataForThisWeek(posts);
@@ -59,19 +59,53 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
       }
       filteredData = filterDataByCurrentMonth(posts);
       break;
-    default:
-      console.log("salame");
+    case "prev_week":
+      function filterDataByLastWeek(data) {
+        const currentDate = new Date();
+        const lastWeekStart = new Date(currentDate);
+        lastWeekStart.setDate(currentDate.getDate() - 13);
+        currentDate.setDate(currentDate.getDate() - 6);
+        const filteredData = data.filter((item) => {
+          const itemDate = new Date(item.date);
+          return itemDate >= lastWeekStart && itemDate <= currentDate;
+        });
 
+        return filteredData;
+      }
+      filteredData = filterDataByLastWeek(posts);
+      break;
+    case "prev_month":
+      function filterDataByLastMonth(data) {
+        const currentDate = new Date();
+        const lastMonthStartDate = new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth() - 1,
+          1
+        );
+        const lastMonthEndDate = new Date(
+          currentDate.getFullYear(),
+          currentDate.getMonth(),
+          1
+        );
+
+        return data.filter((item) => {
+          const itemDate = new Date(item.date);
+          return itemDate >= lastMonthStartDate && itemDate <= lastMonthEndDate;
+        });
+      }
+      filteredData = filterDataByLastMonth(posts);
+      break;
+    default:
+      filteredData = posts;
       break;
   }
-
   return (
     <>
       <section className="new-feed-page pt-20">
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <h1 className="page-title">Son xəbərlər {filterDate}</h1>
+              <h1 className="page-title">Son xəbərlər</h1>
               <div className="filter-links">
                 <ul>
                   <li>
