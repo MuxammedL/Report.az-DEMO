@@ -1,6 +1,6 @@
 import Image from "next/image";
 import VideoSwiper from "./components/swipers/videoSwiper/videoSwiper";
-import { getPosts, getVideos } from "./lib/data";
+import { getLinks, getPosts, getVideos } from "./lib/data";
 import "./_home.scss";
 import Link from "next/link";
 import SideNews from "./components/sideNews/sideNews";
@@ -12,17 +12,7 @@ import ImportantNewsSwiper from "./components/swipers/importantNewsSwiper/import
 export default async function Home() {
   const posts = await getPosts();
   const videos = await getVideos();
-  const links = [];
-  posts.forEach((post) => {
-    links.push({
-      title: `${post.category}`,
-      path: `${createSlug(post.category)}`,
-    });
-  });
-  const uniqueLinks = links.filter(
-    (item, index, self) =>
-      index === self.findIndex((i) => i.title === item.title)
-  );
+  const links = await getLinks();
   return (
     <>
       <section className="entrance">
@@ -128,16 +118,16 @@ export default async function Home() {
       <section className="other-category-news">
         <div className="container">
           <div className="row">
-            {uniqueLinks.slice(0, 6).map((link) => (
+            {links.slice(2, 8).map((link) => (
               <div className="col-lg-4 col-md-6">
                 <h2 className="section-title">
                   <Link
                     className="category-link"
-                    href={link.path}
+                    href={link.url}
                     title={link.title}
                   >
                     {link.title}
-                  </Link>{" "}
+                  </Link>
                 </h2>
                 {posts
                   .filter((item) => item.category == link.title)

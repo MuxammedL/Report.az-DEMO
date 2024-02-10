@@ -1,6 +1,15 @@
 import { connectToDb } from "./utils";
 import { News, User, Valute } from "./models";
-
+export const getLinks = async () => {
+  try {
+    const res = await fetch("http://localhost:4000/links");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch posts!");
+  }
+};
 export const getPosts = async () => {
   try {
     const res = await fetch("http://localhost:4000/news");
