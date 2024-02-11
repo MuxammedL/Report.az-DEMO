@@ -51,9 +51,16 @@ const Header = () => {
     setCelsius(Math.round(data.main.temp));
     setWindSpeed(Math.round(data.wind.speed));
   }
-
+  const toggleDarkMode = () => {
+    localStorage.setItem("darkMode", isDarkMode ? "light" : "dark");
+    const body = document.querySelector("body");
+    isDarkMode
+      ? body.classList.add("darkMode")
+      : body.classList.remove("darkMode");
+  };
   const handleThemeSwitch = (e) => {
-    setDarkMode((prev) => !prev);
+    setDarkMode(!isDarkMode);
+    toggleDarkMode();
   };
 
   const handleMenuToggle = () => {
@@ -63,6 +70,17 @@ const Header = () => {
     setSearching((prev) => !prev);
   };
   useEffect(() => {
+    const storedDarkMode = localStorage.getItem("darkMode");
+    if (storedDarkMode) {
+      setDarkMode(storedDarkMode === "dark");
+    } else {
+      // If no preference is stored, check user's system preference
+      const prefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setDarkMode(prefersDarkMode);
+      localStorage.setItem("darkMode", prefersDarkMode ? "dark" : "light");
+    }
     getWeather();
     getValute();
     const langs = document.querySelectorAll(".langs li a");
@@ -148,7 +166,7 @@ const Header = () => {
                 </div>
                 <div className="right">
                   <div className="static-links">
-                    <Link href="https://github.com/MuxammedL">Haqqimda</Link>
+                    <Link href="/haqqimizda">Haqqimizda</Link>
                   </div>
                   <ul className="socials">
                     <li>

@@ -71,6 +71,13 @@ body {
   &.darkMode {
     background-color: black;
     color: white;
+    .spinner {
+      span {
+        span {
+          background-color: #fff !important;
+        }
+      }
+    }
     .filter-links {
       ul {
         li {
@@ -194,6 +201,17 @@ main {
   margin: 25px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+.spinner {
+  @include Flexible($j-cont: center);
+  margin-top: 200px;
+  min-height: 100vh;
+}
+.flex {
+  @include Flexible($f-wrap: wrap);
+}
+.text-center {
+  text-align: center;
+}
 .filter-links {
   position: relative;
   text-transform: uppercase;
@@ -240,6 +258,45 @@ main {
     }
   }
 }
+.static-page .col-12 {
+  min-height: 60vh;
+}
+.editor-text {
+  font-size: 17px;
+  line-height: 26px;
+  letter-spacing: 0.6px;
+  div {
+    & > * {
+      margin: 0 0 25px;
+    }
+  }
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.2;
+}
+.h4,
+h4 {
+  font-size: 1.5rem;
+}
+#map {
+  position: relative;
+  height: 450px;
+}
+.pb-3 {
+  padding-bottom: 30px;
+}
 .row {
   @include Flexible($f-wrap: wrap);
   margin-right: -15px;
@@ -269,6 +326,10 @@ main {
       flex: 0 0 33.33333%;
       max-width: 33.33333%;
     }
+    .col-md-8 {
+      flex: 0 0 66.66667%;
+      max-width: 66.66667%;
+    }
   }
   @media (min-width: 992px) {
     .col-lg-8 {
@@ -282,6 +343,10 @@ main {
     .col-lg-3 {
       flex: 0 0 25%;
       max-width: 25%;
+    }
+    .col-lg-9 {
+      flex: 0 0 75%;
+      max-width: 75%;
     }
   }
 }

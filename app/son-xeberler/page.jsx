@@ -8,7 +8,6 @@ const LatestNewsPage = async () => {
   const posts = await getPosts();
   return (
     <>
-      
       <section className="new-feed-page pt-20">
         <div className="container">
           <div className="row">
@@ -44,7 +43,9 @@ const LatestNewsPage = async () => {
                   >
                     <div className="image">
                       <Link
-                        href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
+                        href={`/${createSlug(item.category)}/${createSlug(
+                          item.sub_category
+                        )}/${item.slug}`}
                         className="image-link"
                       >
                         <Image
@@ -61,7 +62,9 @@ const LatestNewsPage = async () => {
                     <div className="info">
                       <Link
                         className="title"
-                        href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
+                        href={`/${createSlug(item.category)}/${createSlug(
+                          item.sub_category
+                        )}/${item.slug}`}
                         title={item.title}
                       >
                         {item.title}
