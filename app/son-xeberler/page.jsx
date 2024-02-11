@@ -3,7 +3,11 @@ import { getPosts } from "../lib/data";
 import { createSlug, formatDate, getTimeFromISODate } from "../lib/functions";
 import Image from "next/image";
 import "./_latestNews.scss";
-
+export async function generateMetadata() {
+  return {
+    title: "Son xəbərlər",
+  };
+}
 const LatestNewsPage = async () => {
   const posts = await getPosts();
   return (
@@ -40,6 +44,7 @@ const LatestNewsPage = async () => {
                   <div
                     className={`news-item ${item.important && "highlighted"}`}
                     data-id={item.id}
+                    key={item.id}
                   >
                     <div className="image">
                       <Link

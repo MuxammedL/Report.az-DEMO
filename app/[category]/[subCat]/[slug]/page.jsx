@@ -18,8 +18,9 @@ import NotFound from "@/app/components/NotFound/not-found";
 export async function generateMetadata({ params: { slug } }) {
   const post = await getPost(slug);
   if (post.length > 0) {
+    const [item] = post;
     return {
-      title: post.title,
+      title: item.title,
     };
   } else {
     return {

@@ -681,7 +681,7 @@
     {
       "title": "COP29",
       "url": "cop29",
-      "sub_categories": []
+      "sub_categories": [{ "title": "COP29", "url": "cop29" }]
     },
     {
       "title": "Cəmiyyət",
@@ -729,12 +729,12 @@
     {
       "title": "Analitika",
       "url": "analitika",
-      "sub_categories": []
+      "sub_categories": [{ "title": "Analitika", "url": "analitika" }]
     },
     {
       "title": "Multimedia",
       "url": "multimedia",
-      "sub_categories": []
+      "sub_categories": [{ "title": "Multimedia", "url": "multimedia" }]
     }
   ],
   "users": [

@@ -7,7 +7,31 @@ import {
 import NotFound from "@/app/components/NotFound/not-found";
 import Image from "next/image";
 import Link from "next/link";
-
+export async function generateMetadata({ params }) {
+  const { subCat } = params;
+  const links = await getLinks();
+  const activeLink = links.find((item) =>
+    item.sub_categories.some((cat) => cat.url === subCat)
+  );
+  let title;
+  if (activeLink) {
+    const subCategory = activeLink.sub_categories.find(
+      (cat) => cat.url === subCat
+    );
+    if (subCategory) {
+      title = subCategory.title;
+    }
+  }
+  if (activeLink) {
+    return {
+      title: title,
+    };
+  } else {
+    return {
+      title: "Yanlışlıq baş vermişdir!",
+    };
+  }
+}
 const SubCategoryPage = async ({ params }) => {
   const { subCat } = params;
   const links = await getLinks();
@@ -23,6 +47,7 @@ const SubCategoryPage = async ({ params }) => {
       title = subCategory.title;
     }
   }
+  console.log(links)
   const posts = await getSubCategories(title);
   return (
     <>
@@ -33,7 +58,7 @@ const SubCategoryPage = async ({ params }) => {
             <div className="news-list">
               <div className="row">
                 {posts.map((item) => (
-                  <div className="col-lg-3 col-md-4 col-sm-6 infinity-item">
+                  <div key={item.id} className="col-lg-3 col-md-4 col-sm-6 infinity-item">
                     <div className="news-block">
                       <div className="image">
                         <Link

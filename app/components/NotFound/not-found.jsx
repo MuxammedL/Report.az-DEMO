@@ -1,4 +1,9 @@
 import "./_notFound.scss";
+export async function generateMetadata() {
+  return {
+    title: "Yanlışlıq baş vermişdir!",
+  };
+}
 const NotFound = () => {
   return (
     <>

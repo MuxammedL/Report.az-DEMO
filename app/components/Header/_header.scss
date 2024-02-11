@@ -192,6 +192,13 @@ header {
           }
         }
       }
+      .theme-switch {
+        svg {
+          cursor: pointer;
+          width: 25px;
+          height: 25px;
+        }
+      }
     }
     .navbar {
       display: none;
@@ -201,6 +208,9 @@ header {
         flex-direction: column;
         padding: 15px 0 20px;
         .menu-toggler {
+          display: none;
+        }
+        .theme-switch {
           display: none;
         }
         .logo {

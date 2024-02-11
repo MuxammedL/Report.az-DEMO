@@ -41,7 +41,7 @@ const CategoryPage = async ({ params: { category } }) => {
                 >
                   <ul>
                     {activeLink.sub_categories.map((item) => (
-                      <li>
+                      <li key={item.id}>
                         <Link href={`/${activeLink.url}/${item.url}`}>
                           {item.title}
                         </Link>

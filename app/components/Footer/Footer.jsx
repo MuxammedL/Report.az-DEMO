@@ -61,8 +61,8 @@ const Footer = async () => {
                   </ul>
                   <ul>
                     {links.slice(2).map((item) => (
-                      <li>
-                        <a href={`/${item.url}`}>{item.title}</a>
+                      <li key={item.id}>
+                        <Link href={`/${item.url}/`}>{item.title}</Link>
                       </li>
                     ))}
                   </ul>

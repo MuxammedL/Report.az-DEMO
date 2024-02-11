@@ -69,6 +69,11 @@ const Header = () => {
   const handleSearchClick = () => {
     setSearching((prev) => !prev);
   };
+  const handleSideClick = (e) => {
+    if (e.target.tagName == "A") {
+      setClickedMenu((prev) => !prev);
+    }
+  };
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
     if (storedDarkMode) {
@@ -311,6 +316,22 @@ const Header = () => {
                       )}
                     </Link>
                   </div>
+                  <div className="theme-switch">
+                    <button
+                      className="switcher"
+                      ref={switchBTN}
+                      onClick={handleThemeSwitch}
+                    >
+                      {isDarkMode ? (
+                        <FontAwesomeIcon icon={faSun} className="social_icon" />
+                      ) : (
+                        <FontAwesomeIcon
+                          icon={faMoon}
+                          className="social_icon"
+                        />
+                      )}
+                    </button>
+                  </div>
                 </div>
                 <nav className="navbar">
                   <ul>
@@ -337,7 +358,10 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className={`side-menu ${isClickedMenu ? "show" : ""}`}>
+        <div
+          className={`side-menu ${isClickedMenu ? "show" : ""}`}
+          onClick={handleSideClick}
+        >
           <ul className="mobile-menu">
             <Links />
           </ul>

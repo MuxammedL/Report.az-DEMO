@@ -26,7 +26,7 @@ export default async function Home() {
               <div className="main-news">
                 <div className="actual-news-blocks">
                   {posts.slice(0, 2).map((item) => (
-                    <div className="actual-news-block">
+                    <div className="actual-news-block"key={item.id}> 
                       <div className="bg-image">
                         <Image
                           src={item.image}
@@ -64,7 +64,7 @@ export default async function Home() {
                 </div>
                 <div className="small-news">
                   {posts.slice(2, 14).map((item) => (
-                    <div className="small-news-item">
+                    <div className="small-news-item" key={item.id}>
                       <div className="image">
                         <Link
                           href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
@@ -119,7 +119,7 @@ export default async function Home() {
         <div className="container">
           <div className="row">
             {links.slice(2, 8).map((link) => (
-              <div className="col-lg-4 col-md-6">
+              <div className="col-lg-4 col-md-6" key={link.id}>
                 <h2 className="section-title">
                   <Link
                     className="category-link"
@@ -133,7 +133,7 @@ export default async function Home() {
                   .filter((item) => item.category == link.title)
                   .slice(0, 1)
                   .map((item) => (
-                    <div className="news-block">
+                    <div className="news-block" key={item.id}>
                       <div className="image">
                         <Link
                           href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
@@ -174,7 +174,7 @@ export default async function Home() {
                     .filter((item) => item.category == link.title)
                     .slice(1, 3)
                     .map((item) => (
-                      <div className="small-news-item">
+                      <div className="small-news-item" key={item.id}>
                         <div className="image">
                           <Link
                             href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
