@@ -1,8 +1,10 @@
 import { createSlug, getTimeFromISODate } from "@/app/lib/functions";
 import "./_sideNews.scss";
 import Link from "next/link";
+import { getPosts } from "@/app/lib/data";
 
-const SideNews = ({ posts }) => {
+const SideNews = async () => {
+  const posts = await getPosts();
   return (
     <>
       <div className="latest-news-section">
@@ -23,8 +25,10 @@ const SideNews = ({ posts }) => {
               </div>
               <div className="info">
                 <Link
-                  className="title"
-                  href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
+                  className="sideNews-title"
+                  href={`/${createSlug(item.category)}/${createSlug(
+                    item.sub_category
+                  )}/${item.slug}`}
                 >
                   <span className="feed-news-title">{item.title}</span>
                 </Link>

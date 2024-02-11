@@ -7,9 +7,18 @@ const PostUser = async ({ userId }) => {
   return (
     user && (
       <div className={styles.container}>
-        <span className={styles.title}>Author</span>
-        <span className={styles.username}>{user.username}</span>
-        <Image src={user.image} width={50} height={50} alt={user.username} />
+        <div className={styles.thumb}>
+          <Image
+            src={user.image}
+            alt={user.username}
+            title={user.username}
+            width="0"
+            height="0"
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
+        <div className={styles.info}>{user.username}</div>
       </div>
     )
   );

@@ -109,7 +109,7 @@ export default async function Home() {
             <div className="col-lg-4">
               <div className="side-news">
                 <VideoSwiper videos={videos} />
-                <SideNews posts={posts} />
+                <SideNews/>
               </div>
             </div>
           </div>

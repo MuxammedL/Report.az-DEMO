@@ -3,8 +3,10 @@
 .latest-news-section {
   margin-bottom: 20px;
   .latest-news {
-    height: 1842.75px;
-    overflow: auto;
+    @media (min-width: 992px) {
+      height: 1842.75px;
+      overflow: auto;
+    }
     &::-webkit-scrollbar {
       background-color: #efefef;
       width: 5px;
@@ -28,7 +30,7 @@
       }
       .info {
         width: calc(100% - 60px);
-        .title {
+        .sideNews-title {
           display: block;
           margin: 0 0 7px;
           &:hover {
@@ -48,7 +50,7 @@
       &.highlighted {
         background: #f2f2f2;
         .info {
-          .title {
+          .sideNews-title {
             font-weight: bold;
           }
         }
@@ -68,7 +70,7 @@
     margin: 0 auto;
     background: #fbfbfb;
     transition: 0.2s ease;
-    &:hover{
+    &:hover {
       background-color: #f6f6f6;
     }
     &::after {

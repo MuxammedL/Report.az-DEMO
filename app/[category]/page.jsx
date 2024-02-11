@@ -6,36 +6,34 @@ import Image from "next/image";
 
 export async function generateMetadata({ params: { category } }) {
   const links = await getLinks();
-  const activeLink = links.filter((item) => item.url == category);
+  const link = links.filter((item) => item.url == category);
+  const [activeLink] = link;
   return {
-    title: activeLink[0]?.title,
+    title: activeLink.title,
   };
 }
 const CategoryPage = async ({ params: { category } }) => {
   const links = await getLinks();
   const posts = await getPosts();
-  const activeLink = links.filter((item) => item.url == category);
-  const sortedPosts = posts.filter(
-    (item) => item.category == activeLink[0].title
-  );
-
- 
+  const link = links.filter((item) => item.url == category);
+  const [activeLink] = link;
+  const sortedPosts = posts.filter((item) => item.category == activeLink.title);
   return (
     <>
       <section className="new-feed-page pt-20">
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <h1 className="page-title">{activeLink[0].title}</h1>
+              <h1 className="page-title">{activeLink.title}</h1>
               <div
                 className={`${
-                  activeLink[0].sub_categories.length > 0 ? "filter-links" : ""
+                  activeLink.sub_categories.length > 0 ? "filter-links" : ""
                 }`}
               >
                 <ul>
-                  {activeLink[0].sub_categories.map((item) => (
-                    <li >
-                      <Link href={`/${activeLink[0].url}/${item.url}`}>
+                  {activeLink.sub_categories.map((item) => (
+                    <li>
+                      <Link href={`/${activeLink.url}/${item.url}`}>
                         {item.title}
                       </Link>
                     </li>
@@ -51,7 +49,7 @@ const CategoryPage = async ({ params: { category } }) => {
                     <div className="news-block">
                       <div className="image">
                         <Link
-                          href={`/${activeLink[0].url}/${createSlug(
+                          href={`/${activeLink.url}/${createSlug(
                             item.sub_category
                           )}/${item.slug}`}
                           className="image-link"
@@ -70,7 +68,7 @@ const CategoryPage = async ({ params: { category } }) => {
                       <div className="info">
                         <Link
                           className="title"
-                          href={`/${activeLink[0].url}/${createSlug(
+                          href={`/${activeLink.url}/${createSlug(
                             item.sub_category
                           )}/${item.slug}`}
                           title={item.title}
