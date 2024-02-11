@@ -253,7 +253,7 @@
       "slug": "oten-il-179-din-xadiminin-fealiyyetine-xitam-verilib"
     },
     {
-      "_id": "65bccc4bf1e5999380b13c85",
+      "id": "65bccc4bf1e5999380b13c85",
       "userId": "65bd4dd6f1e5999380b13ca3",
       "category": "Cəmiyyət",
       "sub_category": "Ekologiya",
@@ -265,7 +265,7 @@
       "slug": "senbe-gununun-hava-proqnozu-aciqlanib"
     },
     {
-      "_id": "65bcccb6f1e5999380b13c86",
+      "id": "65bcccb6f1e5999380b13c86",
       "userId": "65bd4dbbf1e5999380b13ca2",
       "category": "Cəmiyyət",
       "sub_category": "Media",
@@ -735,6 +735,109 @@
       "title": "Multimedia",
       "url": "multimedia",
       "sub_categories": []
+    }
+  ],
+  "users": [
+    {
+      "id": "65bd4808f1e5999380b13c97",
+      "image": "https://static.report.az/photo/a31389f3-bdb0-3954-982a-8378f2e91c2d_50.jpg",
+      "username": "Xəbərlər Şöbəsi"
+    },
+
+    {
+      "id": "65bd4871f1e5999380b13c98",
+      "image": "https://static.report.az/photo/03f578ce-929b-37b0-a55d-08ec7079964a_85.jpeg",
+      "username": "Sevil Hilalqızı Ünal"
+    },
+    {
+      "id": "65bd4cc7f1e5999380b13c9b",
+      "image": "https://static.report.az/photo/ef5fefde-7873-38fc-95ae-e67e52ec1142_85.jpg",
+      "username": "Kənan Novruzov"
+    },
+    {
+      "id": "65bd4cf5f1e5999380b13c9c",
+      "image": "https://static.report.az/photo/84141a37-3a97-3ba5-a6e9-e3b5d17d897d_85.jpg",
+      "username": "Sədrəddin İsmayılov"
+    },
+    {
+      "id": "65bd4d12f1e5999380b13c9d",
+      "image": "https://static.report.az/photo/46ead426-bd01-3414-b798-1ff95334d443_85.jpg",
+      "username": "Əşrəf Mehdiyev"
+    },
+    {
+      "id": "65bd4d37f1e5999380b13c9e",
+      "image": "https://static.report.az/photo/6f3f27d8-58c9-394c-a479-c64f0b329def_85.jpg",
+      "username": "Aynur Bayramova"
+    },
+    {
+      "id": "65bd4d59f1e5999380b13c9f",
+      "image": "https://static.report.az/photo/f4e06f1f-a7a9-323d-abd2-8083ccb022dc_85.jpg",
+      "username": "Elşən Aydınov"
+    },
+    {
+      "id": "65bd4d86f1e5999380b13ca0",
+      "image": "https://static.report.az/photo/0f0e817b-a2c8-362f-8d6f-a6b29fadb559_85.jpg",
+      "username": "Tuncay Türbəndəzadə"
+    },
+    {
+      "id": "65bd4da2f1e5999380b13ca1",
+      "image": "https://static.report.az/photo/fd1341aa-aa0a-3f2f-9bdb-0830233233f3_85.jpeg",
+      "username": "Aysel Aslan"
+    },
+    {
+      "id": "65bd4dbbf1e5999380b13ca2",
+      "image": "https://static.report.az/photo/f989a785-23cb-32e6-9efa-09777f1149fd_85.jpg",
+      "username": "Bölgə xəbərləri"
+    },
+    {
+      "id": "65bd4dd6f1e5999380b13ca3",
+      "image": "https://static.report.az/photo/03561f18-89b5-348f-83bc-0f6992cab252_85.jpg",
+      "username": "Samirə Abdullayeva"
+    },
+    {
+      "id": "65bd4df8f1e5999380b13ca4",
+      "image": "https://static.report.az/photo/9427dc89-fe26-3b33-9258-8930c2ec973a_85.jfif",
+      "username": "Gülər Seymurqızı"
+    },
+    {
+      "id": "65bd4e11f1e5999380b13ca5",
+      "image": "https://static.report.az/photo/18f7c284-2729-3dab-a47b-60ba0f4d8ba4_85.jpg",
+      "username": "Ruslan Sadıqov"
+    },
+    {
+      "id": "65bd4e31f1e5999380b13ca6",
+      "image": "https://static.report.az/photo/761ad9db-b410-34dc-932d-437f5b6a2300_85.jpeg",
+      "username": "Təbriz Quliyev"
+    },
+    {
+      "id": "65bd4e77f1e5999380b13ca7",
+      "image": "https://static.report.az/photo/07a9f5ac-a11d-3d36-93ce-7000194e9651_85.jpg",
+      "username": "Gülçin Cəmil"
+    },
+    {
+      "id": "65bd4e8ff1e5999380b13ca8",
+      "image": "https://static.report.az/photo/4f622be5-2351-3f20-868b-44f4ecaae3bc_85.jpg",
+      "username": "Kənan Sadıqov"
+    },
+    {
+      "id": "65c3e7195bf3315ef594118b",
+      "image": "https://static.report.az/photo/1f12eb12-b2e4-3d1f-8164-bbed2786bff6_85.jpg",
+      "username": "Sayad Həsənli"
+    },
+    {
+      "id": "65c4c56285ab1deeea5ccfb6",
+      "image": "https://static.report.az/photo/b26dab0c-f442-355b-808b-98ebd8d49c83_85.jpg",
+      "username": "Aysel Aslanqızı"
+    },
+    {
+      "id": "65c4c6b985ab1deeea5ccfb7",
+      "image": "https://static.report.az/photo/7f2107ef-aa12-3d6e-8fa0-6d50b2eb4af7_85.jpg",
+      "username": "İmdad Əlizadə"
+    },
+    {
+      "id": "65c54c2785ab1deeea5ccfb8",
+      "image": "https://static.report.az/photo/a23383cd-9daf-31c4-8af7-4dd9b0db5380_85.jpeg",
+      "username": "Elvin Camalov"
     }
   ]
 }

@@ -4,21 +4,22 @@ import Image from "next/image";
 
 const PostUser = async ({ userId }) => {
   const user = await getUser(userId);
+  const [item] = user;
   return (
-    user && (
+    item && (
       <div className={styles.container}>
         <div className={styles.thumb}>
           <Image
-            src={user.image}
-            alt={user.username}
-            title={user.username}
+            src={item.image}
+            alt={item.username}
+            title={item.username}
             width="0"
             height="0"
             sizes="100vw"
             style={{ width: "100%", height: "auto" }}
           />
         </div>
-        <div className={styles.info}>{user.username}</div>
+        <div className={styles.info}>{item.username}</div>
       </div>
     )
   );

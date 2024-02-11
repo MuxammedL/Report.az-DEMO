@@ -48,6 +48,15 @@ export const getSubCategories = async (subCat) => {
     throw new Error("Failed to fetch sub categories!");
   }
 };
+export const getUser = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:4000/users?id=${id}`);
+    return res.json();
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch user!");
+  }
+};
 // export const getValutes = async () => {
 //   try {
 //     connectToDb();
@@ -80,16 +89,16 @@ export const getSubCategories = async (subCat) => {
 //   }
 // };
 
-export const getUser = async (id) => {
-  try {
-    connectToDb();
-    const user = await User.findById(id);
-    return user;
-  } catch (err) {
-    console.log(err);
-    throw new Error("Failed to fetch user!");
-  }
-};
+// export const getUser = async (id) => {
+//   try {
+//     connectToDb();
+//     const user = await User.findById(id);
+//     return user;
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("Failed to fetch user!");
+//   }
+// };
 
 export const getUsers = async () => {
   try {

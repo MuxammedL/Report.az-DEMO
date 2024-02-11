@@ -1,0 +1,35 @@
+.error-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54vh;
+  padding: 55px 0 60px;
+  .text-center {
+    text-align: center;
+    line-height: 1.2;
+    .error-code {
+      font-size: 110px;
+      letter-spacing: 10px;
+      color: #353535;
+      font-weight: 800;
+      text-shadow: rgba(53, 53, 53, 0.25) -19px 13px 6.4px;
+    }
+    .error-description {
+      pointer-events: none;
+      user-select: none;
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+  @media (min-width: 576px) {
+    .text-center {
+      .error-code {
+        font-size: 180px;
+        letter-spacing: 15px;
+      }
+      .error-description {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}
