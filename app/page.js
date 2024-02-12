@@ -26,7 +26,7 @@ export default async function Home() {
               <div className="main-news">
                 <div className="actual-news-blocks">
                   {posts.slice(0, 2).map((item) => (
-                    <div className="actual-news-block"key={item.id}> 
+                    <div className="actual-news-block" key={item.id}>
                       <div className="bg-image">
                         <Image
                           src={item.image}
@@ -41,13 +41,13 @@ export default async function Home() {
                       <div className="info">
                         <Link
                           className="news-category"
-                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}`}
+                          href={`/${createSlug(item.sub_category)}`}
                         >
                           {item.sub_category}
                         </Link>
                         <Link
                           className="title"
-                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.title}
@@ -67,7 +67,7 @@ export default async function Home() {
                     <div className="small-news-item" key={item.id}>
                       <div className="image">
                         <Link
-                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           className="image-link"
@@ -86,7 +86,7 @@ export default async function Home() {
                       <div className="info">
                         <Link
                           className="title"
-                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.link}
@@ -109,7 +109,7 @@ export default async function Home() {
             <div className="col-lg-4">
               <div className="side-news">
                 <VideoSwiper videos={videos} />
-                <SideNews/>
+                <SideNews />
               </div>
             </div>
           </div>
@@ -136,7 +136,7 @@ export default async function Home() {
                     <div className="news-block" key={item.id}>
                       <div className="image">
                         <Link
-                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           className="image-link"
@@ -155,7 +155,7 @@ export default async function Home() {
                       <div className="info">
                         <Link
                           className="title"
-                          href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                          href={`/${createSlug(item.sub_category)}/${
                             item.slug
                           }`}
                           title={item.title}
@@ -177,7 +177,7 @@ export default async function Home() {
                       <div className="small-news-item" key={item.id}>
                         <div className="image">
                           <Link
-                            href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                            href={`/${createSlug(item.sub_category)}/${
                               item.slug
                             }`}
                             className="image-link"
@@ -196,7 +196,7 @@ export default async function Home() {
                         <div className="info">
                           <Link
                             className="title"
-                            href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${
+                            href={`/${createSlug(item.sub_category)}/${
                               item.slug
                             }`}
                             title={item.link}

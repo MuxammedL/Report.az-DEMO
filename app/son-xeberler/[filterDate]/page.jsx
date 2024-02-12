@@ -135,15 +135,14 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
               </div>
               <div className="news-list">
                 {filteredData.map((item) => (
-                  <div key={item.id}
+                  <div
+                    key={item.id}
                     className={`news-item ${item.important && "highlighted"}`}
                     data-id={item.id}
                   >
                     <div className="image">
                       <Link
-                        href={`/${createSlug(item.category)}/${createSlug(
-                          item.sub_category
-                        )}/${item.slug}`}
+                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
                         className="image-link"
                       >
                         <Image
@@ -160,9 +159,7 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
                     <div className="info">
                       <Link
                         className="title"
-                        href={`/${createSlug(item.category)}/${createSlug(
-                          item.sub_category
-                        )}/${item.slug}`}
+                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
                         title={item.title}
                       >
                         {item.title}

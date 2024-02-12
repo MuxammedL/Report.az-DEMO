@@ -47,13 +47,13 @@ const MainSwiper = ({ posts }) => {
               <div className="slide-news">
                 <Link
                   className="news-category"
-                  href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}`}
+                  href={`/${createSlug(item.sub_category)}`}
                 >
                   {item.sub_category}
                 </Link>
                 <Link
                   className="title"
-                  href={`/${createSlug(item.category)}/${createSlug(item.sub_category)}/${item.slug}`}
+                  href={`/${createSlug(item.sub_category)}/${item.slug}`}
                 >
                   {item.title}
                 </Link>

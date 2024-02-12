@@ -26,9 +26,7 @@ const SideNews = async () => {
               <div className="info">
                 <Link
                   className="sideNews-title"
-                  href={`/${createSlug(item.category)}/${createSlug(
-                    item.sub_category
-                  )}/${item.slug}`}
+                  href={`/${createSlug(item.sub_category)}/${item.slug}`}
                 >
                   <span className="feed-news-title">{item.title}</span>
                 </Link>
