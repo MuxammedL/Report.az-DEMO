@@ -35,18 +35,19 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
       break;
     case "this_week":
       function filterDataForThisWeek(data) {
-        const today = new Date();
-        const currentDayOfWeek = today.getDay();
-        const startOfWeek = new Date(today);
-        startOfWeek.setDate(today.getDate() - currentDayOfWeek - 6);
-        startOfWeek.setHours(0, 0, 0, 0);
-        const endOfWeek = new Date(startOfWeek);
-        endOfWeek.setDate(startOfWeek.getDate() + 5);
+        const currentDate = new Date();
+        const currentWeekStart = new Date(currentDate);
+        currentWeekStart.setDate(currentDate.getDate() - currentDate.getDay()); // Set to first day of the current week (Sunday)
 
-        return data.filter((item) => {
-          const itemDate = new Date(item.date);
-          return itemDate >= startOfWeek;
+        const currentWeekEnd = new Date(currentWeekStart);
+        currentWeekEnd.setDate(currentWeekStart.getDate() + 6); // Set to last day of the current week (Saturday)
+
+        const filteredData = data.filter((item) => {
+          const itemDate = new Date(item.date); // Assuming item.date is in ISO format
+          return itemDate >= currentWeekStart && itemDate <= currentWeekEnd;
         });
+
+        return filteredData;
       }
       filteredData = filterDataForThisWeek(posts);
       break;
@@ -66,13 +67,24 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
       break;
     case "prev_week":
       function filterDataByLastWeek(data) {
-        const currentDate = new Date();
-        const lastWeekStart = new Date(currentDate);
-        lastWeekStart.setDate(currentDate.getDate() - 13);
-        currentDate.setDate(currentDate.getDate() - 6);
+        // Get today's date
+        const today = new Date();
+        // Get the start and end dates for the previous week
+        const prevWeekStartDate = new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate() - today.getDay() - 6
+        );
+        const prevWeekEndDate = new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate() - today.getDay() - 1
+        );
+
+        // Filter data based on dates
         const filteredData = data.filter((item) => {
           const itemDate = new Date(item.date);
-          return itemDate >= lastWeekStart && itemDate <= currentDate;
+          return itemDate >= prevWeekStartDate && itemDate <= prevWeekEndDate;
         });
 
         return filteredData;

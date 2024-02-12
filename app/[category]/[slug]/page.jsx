@@ -46,9 +46,7 @@ const SinglePost = async ({ params }) => {
                     <div className="category-date">
                       <Link
                         className="news-category"
-                        href={`/${createSlug(item.category)}/${createSlug(
-                          item.sub_category
-                        )}`}
+                        href={`/${createSlug(item.sub_category)}`}
                       >
                         {item.sub_category}
                       </Link>

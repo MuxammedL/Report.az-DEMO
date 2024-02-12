@@ -623,6 +623,18 @@
       "important": false,
       "image": "https://static.report.az/photo/34933a47-dc92-3d28-a9a1-fd769484e059_850.jpg",
       "slug": "niderland-hokumeti-feysbuku-qadagan-edə-bilə"
+    },
+    {
+      "id": "65bcdb70f1e5999380b13c67",
+      "userId": "65c54c2785ab1deeea5ccfb9",
+      "category": "Dünya",
+      "sub_category": "Region",
+      "title": "Ermənistan XİN-in saytından “Dağlıq Qarabağ problemi” bölməsi silinib",
+      "date": "2024-02-13T00:20:00",
+      "text": "<div>\n        <p>\n          Ermənistanın Xarici İşlər Nazirliyinin (XİN) saytından “Dağlıq Qarabağ\n          problemi” bölməsi silinib.\n        </p>\n        <p>\n          <a href=\"#\">“Report”</a>\n          xəbər verir ki, bu barədə erməni politoloq Sergey Melkonyan sosial\n          şəbəkələrdə yazıb.\n        </p>\n        <p>\n          “Ermənistan Xarici İşlər Nazirliyinin saytında həmişə “Dağlıq Qarabağ\n          problemi” bölməsi olub. Bölmə erməni, rus, ingilis və fransız\n          dillərində mövcud idi. Bu səhifə indi bütün dil versiyalarından\n          silinib”, - politoloq qeyd edib.\n        </p>\n        <p>\n          “Əgər bu texniki səhv deyilsə (buna şübhə edirəm), onda Ermənistan\n          artıq texniki və rəsmi olaraq Azərbaycanla həmrəydir. Dağlıq Qarabağ\n          problemi artıq mövcud deyil”, - o əlavə edib.\n        </p>\n      </div>",
+      "important": false,
+      "image": "https://static.report.az/photo/9161cb10-a2e4-3e0f-b598-0d25916d7dd9_850.png",
+      "slug": "ermenistan-xin-in-saytindan-dagliq-qarabag-problemi-bolmesi-silinib"
     }
   ],
   "videoNews": [
@@ -838,6 +850,11 @@
       "id": "65c54c2785ab1deeea5ccfb8",
       "image": "https://static.report.az/photo/a23383cd-9daf-31c4-8af7-4dd9b0db5380_85.jpeg",
       "username": "Elvin Camalov"
+    },
+    {
+      "id": "65c54c2785ab1deeea5ccfb9",
+      "image": "https://static.report.az/photo/521ea7f7-9159-350b-a557-a7cab76a438a_85.jpg",
+      "username": "Anar Tağıyev"
     }
   ]
 }

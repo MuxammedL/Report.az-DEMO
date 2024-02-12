@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getLinks, getPosts, getSubCategories } from "../lib/data";
+import { getLinks, getPosts } from "../lib/data";
 import { createSlug, formatDate, getTimeFromISODate } from "../lib/functions";
 import "./_categoryPage.scss";
 import Image from "next/image";
@@ -60,7 +60,7 @@ const CategoryPage = async ({ params: { category } }) => {
         title = subCategory.title;
       }
     }
-    sortedPosts = await getSubCategories(title);
+    sortedPosts = posts.filter((item) => item.sub_category === title);
   }
   return (
     <>
