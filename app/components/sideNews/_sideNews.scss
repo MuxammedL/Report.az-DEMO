@@ -5,7 +5,7 @@
   .latest-news {
     @media (min-width: 992px) {
       height: 1842.75px;
-      overflow: auto;
+      overflow-y: auto;
     }
     &::-webkit-scrollbar {
       background-color: #efefef;
@@ -20,6 +20,7 @@
       padding: 15px 10px;
       border-bottom: 1px solid #f2f2f2;
       transition: background 0.5s ease;
+      margin: 0;
       .time {
         font-size: 16px;
         width: 60px;

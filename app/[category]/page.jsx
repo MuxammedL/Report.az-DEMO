@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { getLinks, getPosts } from "../lib/data";
-import { createSlug, formatDate, getTimeFromISODate } from "../lib/functions";
 import "./_categoryPage.scss";
-import Image from "next/image";
 import NotFound from "../components/NotFound/not-found";
+import Posts from "./posts/posts";
 
 export async function generateMetadata({ params: { category } }) {
   const links = await getLinks();
@@ -91,7 +90,7 @@ const CategoryPage = async ({ params: { category } }) => {
                 )}
                 {subCategoryLink && <h1 className="page-title">{title}</h1>}
                 <div className="new-list row">
-                  {sortedPosts.map((item) => (
+                  {/* {sortedPosts.map((item) => (
                     <div
                       key={item.id}
                       className="col-lg-3 col-md-4 col-sm-6 infinity-item"
@@ -132,7 +131,8 @@ const CategoryPage = async ({ params: { category } }) => {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  ))} */}
+                  <Posts posts={sortedPosts} />
                 </div>
               </div>
             </div>

@@ -1,12 +1,7 @@
 import { getPosts } from "@/app/lib/data";
-import {
-  createSlug,
-  formatDate,
-  getTimeFromISODate,
-} from "@/app/lib/functions";
-import Image from "next/image";
 import Link from "next/link";
 import "../_latestNews.scss";
+import LatestNewsPosts from "../LatestNewsPosts/LatestNewsPosts";
 export async function generateMetadata() {
   return {
     title: "Son xəbərlər",
@@ -146,43 +141,7 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
                 </ul>
               </div>
               <div className="news-list">
-                {filteredData.map((item) => (
-                  <div
-                    key={item.id}
-                    className={`news-item ${item.important && "highlighted"}`}
-                    data-id={item.id}
-                  >
-                    <div className="image">
-                      <Link
-                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
-                        className="image-link"
-                      >
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          title={item.title}
-                          width="0"
-                          height="0"
-                          sizes="100vw"
-                          style={{ width: "100%", height: "auto" }}
-                        />
-                      </Link>
-                    </div>
-                    <div className="info">
-                      <Link
-                        className="title"
-                        href={`/${createSlug(item.sub_category)}/${item.slug}`}
-                        title={item.title}
-                      >
-                        {item.title}
-                      </Link>
-                      <div className="news-date">
-                        <span>{formatDate(item.date)}</span>
-                        <span>{getTimeFromISODate(item.date)}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                <LatestNewsPosts posts={filteredData} />
               </div>
             </div>
           </div>

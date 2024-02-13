@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getPosts } from "../lib/data";
-import { createSlug, formatDate, getTimeFromISODate } from "../lib/functions";
-import Image from "next/image";
 import "./_latestNews.scss";
+import LatestNewsPosts from "./LatestNewsPosts/LatestNewsPosts";
+import AddNews from "../components/addNews/addNews";
 export async function generateMetadata() {
   return {
     title: "Son xəbərlər",
@@ -16,7 +16,10 @@ const LatestNewsPage = async () => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <h1 className="page-title">Son xəbərlər</h1>
+              <div className="heading">
+                <h1 className="page-title">Son xəbərlər</h1>
+                <AddNews />
+              </div>
               <div className="filter-links">
                 <ul>
                   <li>
@@ -40,7 +43,7 @@ const LatestNewsPage = async () => {
                 </ul>
               </div>
               <div className="news-list">
-                {posts.map((item) => (
+                {/* {posts.map((item) => (
                   <div
                     className={`news-item ${item.important && "highlighted"}`}
                     data-id={item.id}
@@ -76,7 +79,8 @@ const LatestNewsPage = async () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))} */}
+                <LatestNewsPosts posts={posts} />
               </div>
             </div>
           </div>
