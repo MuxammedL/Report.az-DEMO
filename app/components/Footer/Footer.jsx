@@ -150,7 +150,7 @@ const Footer = async () => {
             <div className="row">
               <div className="col-12 text-center">
                 <p>
-                  "Report" müstəqil informasiya agentliyi sayt və gündəlik
+                &quot;Report&quot;müstəqil informasiya agentliyi sayt və gündəlik
                   bülletenlər vasitəsi ilə Azərbaycan, rus və ingilis dillərində
                   siyasət, iqtisadiyyat, cəmiyyət, idman, mədəniyyət sahələri
                   üzrə ölkədə və dünyada baş verən ən vacib hadisələri öz

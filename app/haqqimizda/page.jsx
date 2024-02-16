@@ -21,7 +21,7 @@ const AboutUs = () => {
                     başlayıb. “Global Media Group” holdinqin tərkibinə daxildir.
                     <br />
                     <br />
-                    "Report" müstəqil informasiya agentliyi sayt və gündəlik
+                    &quot;Report&quot; müstəqil informasiya agentliyi sayt və gündəlik
                     bülletenlər vasitəsi ilə Azərbaycan, rus və ingilis
                     dillərində siyasət, iqtisadiyyat, cəmiyyət, idman,
                     mədəniyyət sahələri üzrə ölkədə və dünyada baş verən ən
@@ -99,7 +99,7 @@ const AboutUs = () => {
                     />
                   </p>
                   <p>
-                    27.12.2022-ci il tarixində, "Report.az" xəbər saytı
+                    27.12.2022-ci il tarixində, &quot;Report.az&quot; xəbər saytı
                     İSO-9001, İSO-14001, İSO-45001 beynəlxalq sertifikatlarına
                     layiq görülmüşdür.
                   </p>

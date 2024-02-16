@@ -21,8 +21,8 @@ const Links = () => {
   return (
     <>
       {posts &&
-        posts.map((link) => (
-          <li key={link.url}>
+        posts.map((link,index) => (
+          <li key={index}>
             <Link href={`/${link.url}`}>{link.title}</Link>
           </li>
         ))}
