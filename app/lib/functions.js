@@ -77,3 +77,22 @@ export function getTimeFromISODate(isoDate) {
   // Return the formatted time string (HH:MM:SS)
   return `${hours}:${minutes}`;
 }
+export function convertToJSON(text) {
+  // Split the text into an array of lines
+  const lines = text.split("\n");
+
+  // Wrap each line in a <p> tag
+  const paragraphs = lines.map((line) => `<p>${line.trim()}</p>`);
+
+  // Join the paragraphs into a single string
+  let formattedText = paragraphs.join("");
+
+  // Add "Report" within the <a> tag
+  formattedText = formattedText.replace(
+    /"Report"/g,
+    `<a href=\"#\">“Report”</a>`
+  );
+
+  // Return the formatted text as a JSON object
+  return formattedText;
+}

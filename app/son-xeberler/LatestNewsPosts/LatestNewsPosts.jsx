@@ -32,6 +32,8 @@ const LatestNewsPosts = ({ posts }) => {
           <div className="image">
             <Link
               href={`/${createSlug(item.sub_category)}/${item.slug}`}
+              rel="noopener noreferrer"
+              target="_blank"
               className="image-link"
             >
               <Image
@@ -50,6 +52,8 @@ const LatestNewsPosts = ({ posts }) => {
               className="title"
               href={`/${createSlug(item.sub_category)}/${item.slug}`}
               title={item.title}
+              rel="noopener noreferrer"
+              target="_blank"
             >
               {item.title}
             </Link>

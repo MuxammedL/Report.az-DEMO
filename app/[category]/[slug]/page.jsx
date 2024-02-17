@@ -1,7 +1,7 @@
 import PostUser from "@/app/components/postUser/postUser";
 import SideNews from "@/app/components/sideNews/sideNews";
 import { getPost } from "@/app/lib/data";
-import { createSlug } from "@/app/lib/functions";
+import { createSlug, formatDate, getTimeFromISODate } from "@/app/lib/functions";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -57,9 +57,9 @@ const SinglePost = async ({ params }) => {
                             width={13.3}
                             height={14}
                           />
-                          11 Fevral , 2024
+                          {formatDate(item.date)}
                         </span>
-                        <span>11:55</span>
+                        <span>{getTimeFromISODate(item.date)}</span>
                       </div>
                     </div>
                     <div className="news-cover">

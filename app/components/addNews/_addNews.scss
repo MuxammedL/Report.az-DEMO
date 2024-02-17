@@ -28,7 +28,7 @@
     );
     padding: 0px 4px;
     border-radius: 12px;
-    max-width: 720px;
+    max-width: 780px;
     position: relative;
     .close-btn {
       position: absolute;
@@ -43,7 +43,11 @@
       background-color: #fff;
       padding: 20px 20px 10px;
       border-radius: 8px;
+      font-weight: 500;
       width: 100%;
+      .invalid {
+        border-color: red !important;
+      }
       .btn {
         margin-left: auto;
         display: block;
@@ -51,8 +55,6 @@
       }
 
       label {
-        font-size: 18px;
-        font-weight: 600;
         display: block;
         input[type="text"],
         textarea {
@@ -65,17 +67,26 @@
           display: block;
           border: 1px solid #b5b5b5;
         }
+        textarea {
+          height: 5em;
+          @media (min-width: 576px) {
+            height: 15em;
+          }
+        }
       }
       select {
         cursor: pointer;
         margin-top: 10px;
-        padding: 6px 12px;
-        background-color: #1a1a1a;
-        color: #fff;
+        padding: 6px 8px;
+        background-color: #ffffff;
+        border: 1px solid #b5b5b5;
         border-radius: 6px;
-        margin-left: 10px;
+        width: 165px;
+        @media (min-width: 600px) {
+        }
       }
       .input-group {
+        font-size: 18px;
         &:not(:first-child) {
           margin-top: 10px;
         }
@@ -87,21 +98,24 @@
         &.radios {
           span {
             display: block;
-            font-weight: 600;
             font-size: 18px;
           }
           label {
             display: inline-flex;
             align-items: center;
             margin-top: 0;
-            font-weight: 500;
             &:not(:last-child) {
               margin-right: 10px;
             }
           }
         }
         &.selects {
-          @include Flexible($gap: 30px);
+          @media (min-width: 480px) {
+            @include Flexible($gap: 30px);
+          }
+          span {
+            margin-right: 10px;
+          }
         }
       }
       input[type="radio"] {
@@ -122,6 +136,7 @@
           left: 50%;
           transform: translate(-50%, -50%) scale(0);
         }
+        
         &:checked {
           &::after {
             transform: translate(-50%, -50%) scale(1);
@@ -131,4 +146,3 @@
     }
   }
 }
-

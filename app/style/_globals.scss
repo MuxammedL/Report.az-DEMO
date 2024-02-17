@@ -68,6 +68,9 @@ body {
   line-height: normal;
   background-color: white;
   color: $primary_color;
+  &.hidden-o {
+    overflow: hidden;
+  }
   &.darkMode {
     background-color: black;
     color: white;
