@@ -31,15 +31,21 @@ const FilterDatePage = async ({ params: { filterDate } }) => {
     case "this_week":
       function filterDataForThisWeek(data) {
         const currentDate = new Date();
-        const currentWeekStart = new Date(currentDate);
-        currentWeekStart.setDate(currentDate.getDate() - currentDate.getDay()); // Set to first day of the current week (Sunday)
+        const currentDayOfWeek = currentDate.getDay();
+        const firstDayOfWeek = new Date(currentDate);
+        firstDayOfWeek.setDate(currentDate.getDate() - currentDayOfWeek); // Set to first day of the current week (Sunday)
 
-        const currentWeekEnd = new Date(currentWeekStart);
-        currentWeekEnd.setDate(currentWeekStart.getDate() + 6); // Set to last day of the current week (Saturday)
+        const lastDayOfWeek = new Date(currentDate);
+        lastDayOfWeek.setDate(firstDayOfWeek.getDate() + 6); // Set to last day of the current week (Saturday)
+
+        // Adjust for timezone offset
+        const offset = firstDayOfWeek.getTimezoneOffset();
+        firstDayOfWeek.setMinutes(firstDayOfWeek.getMinutes() - offset);
+        lastDayOfWeek.setMinutes(lastDayOfWeek.getMinutes() - offset);
 
         const filteredData = data.filter((item) => {
-          const itemDate = new Date(item.date); // Assuming item.date is in ISO format
-          return itemDate >= currentWeekStart && itemDate <= currentWeekEnd;
+          const itemDate = new Date(item.date);
+          return itemDate >= firstDayOfWeek && itemDate <= lastDayOfWeek;
         });
 
         return filteredData;

@@ -4,12 +4,36 @@ import {
   formatDate,
   getTimeFromISODate,
 } from "@/app/lib/functions";
+import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { faEllipsisVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LatestNewsPosts = ({ posts }) => {
   const [postsCount, setPostsCount] = useState(20);
+  const [seleceted, setSelected] = useState(null);
+
+  const editNews = () => {};
+  const deleteNews = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:4000/news/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Error deleting news:", error);
+    }
+  };
+  const handleClick = (i) => {
+    if (seleceted == i) {
+      return setSelected(null);
+    }
+    setSelected(i);
+  };
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
@@ -20,14 +44,14 @@ const LatestNewsPosts = ({ posts }) => {
   };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-  });
+  }, []);
   return (
     <>
-      {posts?.slice(0, postsCount).map((item) => (
+      {posts?.slice(0, postsCount).map((item, i) => (
         <div
           className={`news-item ${item.important && "highlighted"}`}
-          data-id={item.id}
           key={item.id}
+          data-id={item.id}
         >
           <div className="image">
             <Link
@@ -60,6 +84,23 @@ const LatestNewsPosts = ({ posts }) => {
             <div className="news-date">
               <span>{formatDate(item.date)}</span>
               <span>{getTimeFromISODate(item.date)}</span>
+            </div>
+          </div>
+          <div className="edit-delete">
+            <button className="ellipsis" onClick={() => handleClick(i)}>
+              <FontAwesomeIcon icon={faEllipsisVertical} />
+            </button>
+            <div className={`buttons ${seleceted == i ? "show" : ""}`}>
+              <button className="edit-btn" onClick={editNews}>
+                <FontAwesomeIcon icon={faPenToSquare} />
+              </button>
+
+              <button
+                className="delete-btn"
+                onClick={() => deleteNews(item.id)}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
             </div>
           </div>
         </div>

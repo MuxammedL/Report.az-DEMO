@@ -5,8 +5,43 @@
   margin: 0 0 15px;
   border-bottom: 1px solid #f2f2f2;
   transition: background 0.5s ease;
+  position: relative;
   &.highlighted {
     background: #f2f2f2;
+  }
+  .edit-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #353535;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    @include Flexible($a-items: center, $f-dir: column);
+    button {
+      padding: 2px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .buttons {
+      max-height: 0;
+      overflow: hidden;
+      @include Flexible($f-dir: column, $gap: 5px);
+      transition: all 0.3s ease-in;
+      button {
+        display: block;
+      }
+      &.show {
+        max-height: 70px;
+      }
+    }
+    @media (min-width: 768px) {
+      right: 10px;
+      top: 10px;
+      button {
+        font-size: 20px;
+        padding: 4px;
+      }
+    }
   }
   @include Flexible($f-wrap: wrap);
   .info {
