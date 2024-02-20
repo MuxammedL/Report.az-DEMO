@@ -78,21 +78,35 @@ export function getTimeFromISODate(isoDate) {
   return `${hours}:${minutes}`;
 }
 export function convertToJSON(text) {
-  // Split the text into an array of lines
   const lines = text.split("\n");
 
-  // Wrap each line in a <p> tag
   const paragraphs = lines.map((line) => `<p>${line.trim()}</p>`);
 
-  // Join the paragraphs into a single string
   let formattedText = paragraphs.join("");
 
-  // Add "Report" within the <a> tag
   formattedText = formattedText.replace(
     /"Report"/g,
     `<a href=\"#\">“Report”</a>`
   );
 
-  // Return the formatted text as a JSON object
   return formattedText;
+}
+export function convertFromJSON(json) {
+  const text = json;
+
+  const regex = /<p>(.*?)<\/p>|<a[^>]*>(.*?)<\/a>/g;
+
+  const extractedText = [];
+
+  let match;
+  while ((match = regex.exec(text)) !== null) {
+    if (match[1]) {
+      extractedText.push(match[1]);
+    } else if (match[2]) {
+      extractedText.push(match[2]);
+    }
+  }
+  const plainText = extractedText.join("\n");
+
+  return plainText;
 }

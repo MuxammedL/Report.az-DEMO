@@ -24,9 +24,9 @@
     background-image: repeating-linear-gradient(
       180deg,
       #000000 0 12px,
-      #ffffff 12px 18px
+      #ffffff 14px 18px
     );
-    padding: 0px 4px;
+    padding: 4px;
     border-radius: 12px;
     max-width: 780px;
     position: relative;
@@ -136,7 +136,7 @@
           left: 50%;
           transform: translate(-50%, -50%) scale(0);
         }
-        
+
         &:checked {
           &::after {
             transform: translate(-50%, -50%) scale(1);

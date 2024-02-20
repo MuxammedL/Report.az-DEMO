@@ -9,13 +9,25 @@ import { faEllipsisVertical, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import UpdateNews from "@/app/components/updateNews/updateNews";
 
 const LatestNewsPosts = ({ posts }) => {
   const [postsCount, setPostsCount] = useState(20);
   const [seleceted, setSelected] = useState(null);
-
-  const editNews = () => {};
+  const router = useRouter();
+  const [update, setUpdate] = useState(false);
+  const [newsId, setNewsId] = useState(null);
+  const [text, setText] = useState();
+  const editNews = (id) => {
+    const content = document.querySelector(
+      `.news-item[data-id="${id}"] .d-none`
+    ).textContent;
+    setText(content);
+    setUpdate(true);
+    setNewsId(id);
+  };
   const deleteNews = async (id) => {
     try {
       const res = await fetch(`http://localhost:4000/news/${id}`, {
@@ -86,12 +98,19 @@ const LatestNewsPosts = ({ posts }) => {
               <span>{getTimeFromISODate(item.date)}</span>
             </div>
           </div>
+          <div
+            className="d-none"
+            dangerouslySetInnerHTML={{ __html: `${item.text}` }}
+          ></div>
           <div className="edit-delete">
             <button className="ellipsis" onClick={() => handleClick(i)}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
             <div className={`buttons ${seleceted == i ? "show" : ""}`}>
-              <button className="edit-btn" onClick={editNews}>
+              <button
+                className="edit-btn"
+                onClick={() => editNews(item.id)}
+              >
                 <FontAwesomeIcon icon={faPenToSquare} />
               </button>
 
@@ -105,6 +124,14 @@ const LatestNewsPosts = ({ posts }) => {
           </div>
         </div>
       ))}
+      {update && (
+        <UpdateNews
+          active={update}
+          setUpdate={setUpdate}
+          newsId={newsId}
+          content={text}
+        />
+      )}
     </>
   );
 };

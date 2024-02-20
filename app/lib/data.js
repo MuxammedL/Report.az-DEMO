@@ -1,8 +1,8 @@
+import { unstable_noStore as noStore } from "next/cache";
 export const getLinks = async () => {
+  noStore()
   try {
-    const res = await fetch("http://localhost:4000/links", {
-      cache: "no-store",
-    });
+    const res = await fetch("http://localhost:4000/links");
     const data = await res.json();
     return data;
   } catch (err) {
@@ -11,10 +11,9 @@ export const getLinks = async () => {
   }
 };
 export const getPosts = async () => {
+  noStore();
   try {
-    const res = await fetch("http://localhost:4000/news", {
-      cache: "no-store",
-    });
+    const res = await fetch("http://localhost:4000/news");
     const data = await res.json();
     data.sort((a, b) => new Date(b.date) - new Date(a.date));
     return data;
