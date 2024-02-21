@@ -1,79 +1,6 @@
 @import "../style/partials/mixin";
 
-.news-item {
-  padding: 0 0 15px;
-  margin: 0 0 15px;
-  border-bottom: 1px solid #f2f2f2;
-  transition: background 0.5s ease;
-  position: relative;
-  &.highlighted {
-    background: #f2f2f2;
-  }
-  .edit-delete {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: #353535;
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    @include Flexible($a-items: center, $f-dir: column);
-    button {
-      padding: 2px;
-      cursor: pointer;
-      font-size: 18px;
-    }
-    .buttons {
-      max-height: 0;
-      overflow: hidden;
-      @include Flexible($f-dir: column, $gap: 5px);
-      transition: all 0.3s ease-in;
-      button {
-        display: block;
-      }
-      &.show {
-        max-height: 70px;
-      }
-    }
-    @media (min-width: 768px) {
-      right: 10px;
-      top: 10px;
-      button {
-        font-size: 20px;
-        padding: 4px;
-      }
-    }
-  }
-  @include Flexible($f-wrap: wrap);
-  .info {
-    width: calc(100% - 100px);
-    padding-left: 15px;
-    .title {
-      margin: 0 0 10px;
-      font-weight: 500;
-    }
-  }
-  .image {
-    width: 100px;
-    a {
-      display: block;
-    }
-  }
-  @media (min-width: 768px) {
-    padding: 20px 14px;
-    margin: 0 -14px;
-    .image {
-      width: 180px;
-    }
-    .info {
-      width: calc(100% - 180px);
-      padding-left: 30px;
-      .title {
-        font-size: 18px;
-        letter-spacing: 0.55px;
-      }
-    }
-  }
-}
+
 .heading {
   @include Flexible($j-cont: space-between, $a-items: center);
   margin-bottom: 25px;
@@ -81,15 +8,39 @@
     margin: 0;
   }
 }
-body {
-  &.darkMode {
-    .news-item {
-      &.highlighted {
-        background: #1a1a1a;
-      }
+.edit-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #353535;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  @include Flexible($a-items: center, $f-dir: column);
+  button {
+    padding: 2px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .buttons {
+    max-height: 0;
+    overflow: hidden;
+    @include Flexible($f-dir: column, $gap: 5px);
+    transition: all 0.3s ease-in;
+    button {
+      display: block;
+    }
+    &.show {
+      max-height: 70px;
+    }
+  }
+  @media (min-width: 768px) {
+    right: 10px;
+    top: 10px;
+    button {
+      font-size: 20px;
+      padding: 4px;
     }
   }
 }
-.d-none {
-  display: none;
-}
+
+

@@ -1,7 +1,12 @@
 import PostUser from "@/app/components/postUser/postUser";
 import SideNews from "@/app/components/sideNews/sideNews";
 import { getPost } from "@/app/lib/data";
-import { createSlug, formatDate, getTimeFromISODate } from "@/app/lib/functions";
+import {
+  convertToJSON,
+  createSlug,
+  formatDate,
+  getTimeFromISODate,
+} from "@/app/lib/functions";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -77,7 +82,9 @@ const SinglePost = async ({ params }) => {
                     </div>
                     <div
                       className="editor-text"
-                      dangerouslySetInnerHTML={{ __html: `${item.text}` }}
+                      dangerouslySetInnerHTML={{
+                        __html: `${convertToJSON(item.text)}`,
+                      }}
                     ></div>
                     <div className="subs-in-social subs-whatsapp">
                       <Link

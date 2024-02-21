@@ -15,6 +15,7 @@ import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import "./_header.scss";
 import { useEffect, useState, useRef } from "react";
 import Links from "./links/Links";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [windSpeed, setWindSpeed] = useState();
@@ -25,6 +26,8 @@ const Header = () => {
   const switchBTN = useRef();
   const [currentValuteIndex, setCurrentValuteIndex] = useState(0);
   const [isSearching, setSearching] = useState(false);
+  const [query, setQuery] = useState("");
+  const router = useRouter();
   async function getValute() {
     try {
       const res = await fetch(`http://localhost:4000/valutes`, {
@@ -51,6 +54,7 @@ const Header = () => {
     setCelsius(Math.round(data.main.temp));
     setWindSpeed(Math.round(data.wind.speed));
   }
+
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", isDarkMode ? "light" : "dark");
     const body = document.querySelector("body");
@@ -58,22 +62,39 @@ const Header = () => {
       ? body.classList.add("darkMode")
       : body.classList.remove("darkMode");
   };
+
   const handleThemeSwitch = (e) => {
     setDarkMode(!isDarkMode);
     toggleDarkMode();
   };
 
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
   const handleMenuToggle = () => {
     setClickedMenu((prev) => !prev);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim() !== "") {
+      router.push(`/search?query=${encodeURIComponent(query)}`);
+    }
+    setQuery("");
+    setSearching((prev) => !prev);
+  };
+
   const handleSearchClick = () => {
     setSearching((prev) => !prev);
   };
+
   const handleSideClick = (e) => {
     if (e.target.tagName == "A") {
       setClickedMenu((prev) => !prev);
     }
   };
+
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
     if (storedDarkMode) {
@@ -341,14 +362,17 @@ const Header = () => {
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </div>
                   <div className={`search-block ${isSearching ? "show" : ""}`}>
-                    <div className="search-block-inner">
-                      <input
-                        name="query"
-                        type="text"
-                        placeholder="Açar sözü daxil edin"
-                        required=""
-                      />
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                      <div className="search-block-inner">
+                        <input
+                          name="query"
+                          type="text"
+                          placeholder="Açar sözü daxil edin"
+                          value={query}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </form>
                     <div className="close-search" onClick={handleSearchClick}>
                       <FontAwesomeIcon icon={faXmark} />
                     </div>

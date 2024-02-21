@@ -85,10 +85,19 @@ export function convertToJSON(text) {
   let formattedText = paragraphs.join("");
 
   formattedText = formattedText.replace(
-    /"Report"/g,
-    `<a href=\"#\">“Report”</a>`
+    /“Report”/g,
+    `<a href=\"/\">“Report”</a>`
   );
-
+  formattedText = formattedText.replace(
+    /"Report"/g,
+    `<a href=\"/\">“Report”</a>`
+  );
+  formattedText = formattedText.replace(/\*(.*?)\*/g, "<strong>$1</strong>");
+  formattedText = formattedText.replace(/\_(.*?)\_/g, "<em>$1</em>");
+  formattedText = formattedText.replace(
+    /\@!(.*?)\@/g,
+    "<span style='color:red'>$1</span>"
+  );
   return formattedText;
 }
 export function convertFromJSON(json) {

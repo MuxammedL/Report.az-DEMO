@@ -258,6 +258,9 @@ header {
           &.show {
             display: block;
           }
+          form{
+            height: inherit;
+          }
           .search-block-inner {
             height: inherit;
             position: relative;
