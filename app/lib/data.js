@@ -1,6 +1,6 @@
 import { unstable_noStore as noStore } from "next/cache";
 export const getLinks = async () => {
-  noStore()
+  noStore();
   try {
     const res = await fetch("http://localhost:4000/links");
     const data = await res.json();
@@ -32,6 +32,7 @@ export const getVideos = async () => {
   }
 };
 export const getPost = async (slug) => {
+  noStore();
   try {
     const res = await fetch(`http://localhost:4000/news?slug=${slug}`);
     return res.json();

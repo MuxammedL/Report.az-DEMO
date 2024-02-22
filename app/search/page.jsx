@@ -1,4 +1,5 @@
 import { getPosts } from "../lib/data";
+import { replaceAzerbaijaniLetters } from "../lib/functions";
 import PostCards from "./postCards/PostCards";
 export const generateMetadata = ({ searchParams: { query } }) => {
   return {
@@ -7,19 +8,6 @@ export const generateMetadata = ({ searchParams: { query } }) => {
 };
 const Search = async ({ searchParams: { query } }) => {
   const posts = await getPosts();
-  function replaceAzerbaijaniLetters(text) {
-    const replacements = {
-      ə: "e",
-      ç: "c",
-      ş: "s",
-      ü: "u",
-      ö: "o",
-      ğ: "g",
-      ı: "i",
-    };
-
-    return text.replace(/[əçşüöğıı]/g, (letter) => replacements[letter]);
-  }
 
   const filteredData = posts.filter((item) => {
     const title = replaceAzerbaijaniLetters(item.title.toLowerCase());

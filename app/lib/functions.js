@@ -119,3 +119,16 @@ export function convertFromJSON(json) {
 
   return plainText;
 }
+export function replaceAzerbaijaniLetters(text) {
+  const replacements = {
+    ə: "e",
+    ç: "c",
+    ş: "s",
+    ü: "u",
+    ö: "o",
+    ğ: "g",
+    ı: "i",
+  };
+
+  return text.replace(/[əçşüöğıı]/g, (letter) => replacements[letter]);
+}
