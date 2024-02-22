@@ -16,6 +16,7 @@ import "./_header.scss";
 import { useEffect, useState, useRef } from "react";
 import Links from "./links/Links";
 import { useRouter } from "next/navigation";
+import { getValute, getWeather } from "@/app/lib/data";
 
 const Header = () => {
   const [windSpeed, setWindSpeed] = useState();
@@ -28,32 +29,6 @@ const Header = () => {
   const [isSearching, setSearching] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
-  async function getValute() {
-    try {
-      const res = await fetch(`http://localhost:4000/valutes`, {
-        next: { revalidate: 300 },
-      });
-      if (!res.ok) {
-        throw new Error(`HTTP error! Status: ${res.status}`);
-      }
-      const data = await res.json();
-      setValute(data);
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
-    }
-  }
-
-  async function getWeather() {
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=baku&appid=daf23bcd6e2a7097959c3849d264e8be&units=metric`,
-      {
-        next: { revalidate: 300 },
-      }
-    );
-    const data = await res.json();
-    setCelsius(Math.round(data.main.temp));
-    setWindSpeed(Math.round(data.wind.speed));
-  }
 
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", isDarkMode ? "light" : "dark");
@@ -87,6 +62,10 @@ const Header = () => {
 
   const handleSearchClick = () => {
     setSearching((prev) => !prev);
+    setTimeout(() => {
+      const input = document.querySelector('input[name="query"]');
+      input.focus();
+    }, 0);
   };
 
   const handleSideClick = (e) => {
@@ -95,20 +74,29 @@ const Header = () => {
     }
   };
 
+  const fetchData = async () => {
+    try {
+      setValute(await getValute());
+      const data = await getWeather();
+      setCelsius(Math.round(data.main.temp));
+      setWindSpeed(Math.round(data.wind.speed));
+    } catch (error) {
+      console.error("Error fetching valute:", error);
+    }
+  };
+
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
     if (storedDarkMode) {
       setDarkMode(storedDarkMode === "dark");
     } else {
-      // If no preference is stored, check user's system preference
       const prefersDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
       setDarkMode(prefersDarkMode);
       localStorage.setItem("darkMode", prefersDarkMode ? "dark" : "light");
     }
-    getWeather();
-    getValute();
+    fetchData();
     const langs = document.querySelectorAll(".langs li a");
     langs.forEach((lang) => {
       lang.addEventListener("click", () => {

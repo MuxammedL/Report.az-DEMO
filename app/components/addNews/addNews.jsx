@@ -32,11 +32,7 @@ const AddNews = () => {
           input.tagName === "TEXTAREA") &&
         input.type !== "submit"
       ) {
-        if (input.name == "text") {
-          formData[input.name] = `<div>\n${convertToJSON(input.value)}</div>`;
-        } else {
-          formData[input.name] = input.value;
-        }
+        formData[input.name] = input.value;
         if (input.value == "") {
           input.classList.add("invalid");
           isNotNull = false;

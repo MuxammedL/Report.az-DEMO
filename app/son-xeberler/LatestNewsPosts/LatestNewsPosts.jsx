@@ -14,12 +14,14 @@ import { useRouter } from "next/navigation";
 import UpdateNews from "@/app/components/updateNews/updateNews";
 
 const LatestNewsPosts = ({ posts }) => {
+  const router = useRouter();
   const [postsCount, setPostsCount] = useState(20);
   const [seleceted, setSelected] = useState(null);
-  const router = useRouter();
   const [update, setUpdate] = useState(false);
   const [newsId, setNewsId] = useState(null);
   const [text, setText] = useState();
+  const [deletion, setDeletion] = useState(false);
+
   const editNews = (id) => {
     const content = document.querySelector(
       `.news-item[data-id="${id}"] .d-none`
@@ -35,6 +37,7 @@ const LatestNewsPosts = ({ posts }) => {
       });
       if (res.ok) {
         router.refresh();
+        setDeletion(false);
       }
     } catch (error) {
       console.error("Error deleting news:", error);
@@ -54,6 +57,13 @@ const LatestNewsPosts = ({ posts }) => {
       setPostsCount((prev) => prev + 20);
     }
   };
+  useEffect(() => {
+    const body = document.querySelector("body");
+    deletion
+      ? body.classList.add("hidden-o")
+      : body.classList.remove("hidden-o");
+  }, [deletion]);
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, []);
@@ -107,16 +117,15 @@ const LatestNewsPosts = ({ posts }) => {
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
             <div className={`buttons ${seleceted == i ? "show" : ""}`}>
-              <button
-                className="edit-btn"
-                onClick={() => editNews(item.id)}
-              >
+              <button className="edit-btn" onClick={() => editNews(item.id)}>
                 <FontAwesomeIcon icon={faPenToSquare} />
               </button>
-
               <button
                 className="delete-btn"
-                onClick={() => deleteNews(item.id)}
+                onClick={() => {
+                  setDeletion((prev) => !prev);
+                  setNewsId(item.id);
+                }}
               >
                 <FontAwesomeIcon icon={faTrash} />
               </button>
@@ -131,6 +140,21 @@ const LatestNewsPosts = ({ posts }) => {
           newsId={newsId}
           content={text}
         />
+      )}
+      {deletion && (
+        <div className="remove-news">
+          <div className="inner-side">
+            <h3>Xəbəri silməkdən əminsiniz?</h3>
+            <div className="buttons">
+              <button className="delete" onClick={() => deleteNews(newsId)}>
+                Hə
+              </button>
+              <button className="cancel" onClick={() => setDeletion(false)}>
+                Xeyr
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

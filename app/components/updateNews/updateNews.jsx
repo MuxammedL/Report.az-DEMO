@@ -2,14 +2,10 @@
 import { getLinks } from "@/app/lib/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import {
-  convertFromJSON,
-  convertToJSON,
-  createSlug,
-} from "@/app/lib/functions";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { convertToJSON, createSlug } from "@/app/lib/functions";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-const UpdateNews = ({ active, setUpdate, newsId, content }) => {
+const UpdateNews = ({ setUpdate, newsId }) => {
   const router = useRouter();
   const [links, setLinks] = useState(null);
   const [category, setCategory] = useState("");
@@ -20,17 +16,13 @@ const UpdateNews = ({ active, setUpdate, newsId, content }) => {
   const [image, setImage] = useState("");
   const [important, setImportant] = useState(false);
   const [post, setPost] = useState();
+
   const handleShowBtn = () => {
     const body = document.querySelector("body");
     body.classList.remove("hidden-o");
     setUpdate(false);
   };
-  const handleSelectChange = (e) => {
-    setCategory(e.target.value);
-  };
-  const handleSubCategory = (e) => {
-    setSubCategory(e.target.value);
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let isNotNull = true;
@@ -42,11 +34,7 @@ const UpdateNews = ({ active, setUpdate, newsId, content }) => {
           input.tagName === "TEXTAREA") &&
         input.type !== "submit"
       ) {
-        if (input.name == "text") {
-          formData[input.name] = `<div>\n${convertToJSON(input.value)}</div>`;
-        } else {
-          formData[input.name] = input.value;
-        }
+        formData[input.name] = input.value;
         if (input.value == "") {
           input.classList.add("invalid");
           isNotNull = false;
@@ -109,7 +97,7 @@ const UpdateNews = ({ active, setUpdate, newsId, content }) => {
     if (post) {
       setTitle(post.title);
       setImage(post.image);
-      setText(content);
+      setText(post.text);
       setCategory(post.category);
       setSubCategory(post.sub_category);
       setImportant(post.important);
@@ -171,7 +159,7 @@ const UpdateNews = ({ active, setUpdate, newsId, content }) => {
                       name="category"
                       id="category"
                       value={category}
-                      onChange={handleSelectChange}
+                      onChange={(e) => setCategory(e.target.value)}
                     >
                       <option value=""></option>
                       {links &&
@@ -188,7 +176,7 @@ const UpdateNews = ({ active, setUpdate, newsId, content }) => {
                       name="sub_category"
                       id="sub_category"
                       value={sub_category}
-                      onChange={handleSubCategory}
+                      onChange={(e) => setSubCategory(e.target.value)}
                     >
                       <option value=""></option>
                       {category &&

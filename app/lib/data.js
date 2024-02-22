@@ -64,6 +64,36 @@ export const getUser = async (id) => {
   }
 };
 
+export const getValute = async () => {
+  noStore();
+  try {
+    const res = await fetch(`http://localhost:4000/valutes`);
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching valute:", error.message);
+  }
+};
+
+export const getWeather = async () => {
+  noStore();
+  try {
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=baku&appid=daf23bcd6e2a7097959c3849d264e8be&units=metric`,
+      {
+        next: { revalidate: 300 },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching weather:", error.message);
+  }
+};
+
 //-hostName
 // export const getLinks = async () => {
 //   try {
