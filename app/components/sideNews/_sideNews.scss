@@ -75,8 +75,11 @@
       background-color: #f6f6f6;
     }
     &::after {
+      display: inline-block;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
       content: "\f30b";
-      font-family: "Font Awesome 6 Free";
+      font: var(--fa-font-solid);
       font-weight: 600;
       font-size: 17px;
       position: absolute;

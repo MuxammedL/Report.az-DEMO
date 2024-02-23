@@ -1,81 +1,33 @@
 "use client";
 import Image from "next/image";
 import {
-  convertFromJSON,
   convertToJSON,
   createSlug,
   formatDate,
   getTimeFromISODate,
+  highlightMatchingWords,
+  splitSentence,
 } from "@/app/lib/functions";
 import Link from "next/link";
-function highlightMatchingWords(text, query) {
-  const queryWords = query.toLowerCase().split(/\s+/);
-  if (text) {
-    text = text.replace(/\n/g, "").trim();
-    const words = text.split(/\s+/);
+import { useEffect, useState } from "react";
 
-    const highlightedText = words
-      .map((word) => {
-        if (
-          queryWords.some((queryWord) => word.toLowerCase().includes(queryWord))
-        ) {
-          return `<span class="highlight">${word}</span>`;
-        } else {
-          return word;
-        }
-      })
-      .join(" ");
+const PostCards = ({ query, posts }) => {
+  const [postsCount, setPostsCount] = useState(10);
 
-    return highlightedText;
-  }
-}
-function splitSentence(text, query) {
-  const matchedParagraphs = [];
-
-  // Split text into paragraphs
-  const paragraphs = text.split("</p>");
-
-  // Iterate through paragraphs
-  for (let i = 0; i < paragraphs.length; i++) {
-    let paragraph = paragraphs[i].trim(); // Remove leading and trailing whitespace
-
-    // Skip empty or whitespace-only paragraphs
-    if (paragraph.length === 0) {
-      continue;
-    }
-
-    // Split query into words
-    const queryWords = query?.toLowerCase().split(" ");
-
-    // Check if any query word is found in the paragraph
+  const handleScroll = () => {
     if (
-      queryWords?.some((queryWord) =>
-        paragraph.toLowerCase().includes(queryWord)
-      )
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
     ) {
-      matchedParagraphs.push(paragraph + "</p>");
-      return matchedParagraphs; // Stop searching after finding the first match
+      setPostsCount((prev) => prev + 10);
     }
-  }
-
-  // If no match found and matchedParagraphs is empty, search for the first non-empty paragraph
-  if (matchedParagraphs.length === 0) {
-    for (let i = 0; i < paragraphs.length; i++) {
-      let paragraph = paragraphs[i].trim();
-      if (paragraph.length > 0) {
-        matchedParagraphs.push(paragraph + "</p>");
-        break;
-      }
-    }
-  }
-
-  return matchedParagraphs;
-}
-
-const PostCards = ({ item, query, posts }) => {
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  }, []);
   return (
     <>
-      {posts.map((item) => (
+      {posts.slice(0, postsCount).map((item) => (
         <div
           className={`news-item ${item.important && "highlighted"}`}
           key={item.id}

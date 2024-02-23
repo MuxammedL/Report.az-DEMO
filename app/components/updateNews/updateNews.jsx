@@ -1,10 +1,11 @@
 "use client";
 import { getLinks } from "@/app/lib/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { convertToJSON, createSlug } from "@/app/lib/functions";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const UpdateNews = ({ setUpdate, newsId }) => {
   const router = useRouter();
   const [links, setLinks] = useState(null);
@@ -16,6 +17,7 @@ const UpdateNews = ({ setUpdate, newsId }) => {
   const [image, setImage] = useState("");
   const [important, setImportant] = useState(false);
   const [post, setPost] = useState();
+  const [info, setInfo] = useState(false);
 
   const handleShowBtn = () => {
     const body = document.querySelector("body");
@@ -129,6 +131,8 @@ const UpdateNews = ({ setUpdate, newsId }) => {
                       onInput={(e) => setTitle(e.target.value)}
                     />
                   </label>
+                </div>
+                <div className="input-group">
                   <label htmlFor="text">
                     Xəbər haqqında məlumat
                     <textarea
@@ -139,6 +143,9 @@ const UpdateNews = ({ setUpdate, newsId }) => {
                       onInput={(e) => setText(e.target.value)}
                     />
                   </label>
+                  <button type="button" className="info" onClick={() => setInfo(true)}>
+                  <FontAwesomeIcon icon={faCircleInfo} />
+                </button>
                 </div>
                 <div className="input-group">
                   <label htmlFor="image-link">
@@ -227,6 +234,22 @@ const UpdateNews = ({ setUpdate, newsId }) => {
                 <FontAwesomeIcon icon={faXmark} />
               </div>
             </div>
+          </div>
+        </div>
+      )}
+      {info && (
+        <div className="modal-info">
+          <div className="modal-inner">
+            <Image
+              src="/images/text-info.png"
+              fill
+              sizes="cover"
+              alt="background"
+              style={{ objectFit: "contain" }}
+            />
+            <button  onClick={() => setInfo(false)}>
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
           </div>
         </div>
       )}

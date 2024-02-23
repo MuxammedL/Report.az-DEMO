@@ -1,27 +1,24 @@
 "use client";
-import { getPosts } from "@/app/lib/data";
+import { getLinks } from "@/app/lib/data";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Links = () => {
-  const [posts, setPosts] = useState();
-  async function getPosts() {
+  const [links, setLinks] = useState();
+  const fetchData = async () => {
     try {
-      const res = await fetch("http://localhost:4000/links");
-      const data = await res.json();
-      setPosts(data);
-    } catch (err) {
-      console.log(err);
-      throw new Error("Failed to fetch posts!");
+      setLinks(await getLinks());
+    } catch (error) {
+      console.error("Error fetching links:", error);
     }
-  }
+  };
   useEffect(() => {
-    getPosts();
+    fetchData();
   }, []);
   return (
     <>
-      {posts &&
-        posts.map((link,index) => (
+      {links &&
+        links.map((link, index) => (
           <li key={index}>
             <Link href={`/${link.url}`}>{link.title}</Link>
           </li>

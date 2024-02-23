@@ -34,7 +34,11 @@ const Search = async ({ searchParams: { query } }) => {
                 <h1 className="page-title">Açar sözü: {query}</h1>
               </div>
               <div className="news-list">
-                <PostCards posts={filteredData} query={query} />
+                {filteredData.length > 0 ? (
+                  <PostCards posts={filteredData} query={query} />
+                ) : (
+                  <h2>Axtarışa uyğun nəticə tapılmadı.</h2>
+                )}
               </div>
             </div>
           </div>

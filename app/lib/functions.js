@@ -86,11 +86,11 @@ export function convertToJSON(text) {
 
   formattedText = formattedText.replace(
     /“Report”/g,
-    `<a href=\"/\">“Report”</a>`
+    `<a href=\"/\"> “Report”</a>`
   );
   formattedText = formattedText.replace(
     /"Report"/g,
-    `<a href=\"/\">“Report”</a>`
+    `<a href=\"/\"> “Report”</a>`
   );
   formattedText = formattedText.replace(/\*(.*?)\*/g, "<strong>$1</strong>");
   formattedText = formattedText.replace(/\_(.*?)\_/g, "<em>$1</em>");
@@ -131,4 +131,60 @@ export function replaceAzerbaijaniLetters(text) {
   };
 
   return text.replace(/[əçşüöğıı]/g, (letter) => replacements[letter]);
+}
+export function splitSentence(text, query) {
+  const matchedParagraphs = [];
+
+  const paragraphs = text.split("</p>");
+
+  for (let i = 0; i < paragraphs.length; i++) {
+    let paragraph = paragraphs[i].trim();
+    if (paragraph.length === 0) {
+      continue;
+    }
+
+    const queryWords = query?.toLowerCase().split(" ");
+
+    if (
+      queryWords?.some((queryWord) =>
+        paragraph.toLowerCase().includes(queryWord)
+      )
+    ) {
+      matchedParagraphs.push(paragraph + "</p>");
+      return matchedParagraphs;
+    }
+  }
+
+  if (matchedParagraphs.length === 0) {
+    for (let i = 0; i < paragraphs.length; i++) {
+      let paragraph = paragraphs[i].trim();
+      if (paragraph.length > 0) {
+        matchedParagraphs.push(paragraph + "</p>");
+        break;
+      }
+    }
+  }
+
+  return matchedParagraphs;
+}
+export function highlightMatchingWords(text, query) {
+  const queryWords = query.toLowerCase().split(/\s+/);
+  if (text) {
+    text = text.replace(/\n/g, "").trim();
+    const words = text.split(/\s+/);
+
+    const highlightedText = words
+      .map((word) => {
+        if (
+          queryWords.some((queryWord) => word.toLowerCase().includes(queryWord))
+        ) {
+          return `<span class="highlight">${word}</span>`;
+        } else {
+          return word;
+        }
+      })
+      .join(" ");
+
+    return highlightedText;
+  }
 }

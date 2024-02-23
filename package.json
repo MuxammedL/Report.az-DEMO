@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build ",
     "start": "next start",
     "lint": "next lint",
-    "db": "npx json-server db.json --port 4000 "
+    "db": "npx json-server db.json --port 4000 --host 192.168.0.106"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -22,6 +22,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-spinners": "^0.13.8",
+    "sharp": "^0.33.2",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

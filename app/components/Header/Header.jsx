@@ -29,7 +29,6 @@ const Header = () => {
   const [isSearching, setSearching] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
-
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", isDarkMode ? "light" : "dark");
     const body = document.querySelector("body");
@@ -54,8 +53,9 @@ const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() !== "") {
-      router.push(`/search?query=${encodeURIComponent(query)}`);
+      router.push(`/search?query=${encodeURIComponent(query.trim())}`);
     }
+    setClickedMenu(false);
     setQuery("");
     setSearching((prev) => !prev);
   };
@@ -84,6 +84,8 @@ const Header = () => {
       console.error("Error fetching valute:", error);
     }
   };
+
+ 
 
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
@@ -379,12 +381,16 @@ const Header = () => {
           </ul>
           <div className="mobile-search">
             <div className="mobile-search-inner">
-              <input
-                name="query"
-                type="text"
-                placeholder="Açar sözü daxil edin"
-                required=""
-              />
+              <form onSubmit={handleSubmit}>
+                <input
+                  name="query"
+                  type="text"
+                  placeholder="Açar sözü daxil edin"
+                  required=""
+                  value={query}
+                  onChange={handleInputChange}
+                />
+              </form>
             </div>
           </div>
         </div>

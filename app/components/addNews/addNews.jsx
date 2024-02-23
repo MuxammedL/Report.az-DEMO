@@ -2,10 +2,11 @@
 import { getLinks } from "@/app/lib/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./_addNews.scss";
-import { useEffect, useRef, useState } from "react";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { convertToJSON, createSlug } from "@/app/lib/functions";
+import { useEffect, useState } from "react";
+import { faXmark, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { createSlug } from "@/app/lib/functions";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 const AddNews = () => {
   const router = useRouter();
   const [links, setLinks] = useState(null);
@@ -14,6 +15,7 @@ const AddNews = () => {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [important, setImportant] = useState(false);
+  const [info, setInfo] = useState(false);
   const handleShowBtn = () => {
     setShow(!show);
   };
@@ -76,7 +78,6 @@ const AddNews = () => {
       }
     }
   };
-
   useEffect(() => {
     const fetchLinks = async () => {
       try {
@@ -121,10 +122,15 @@ const AddNews = () => {
                     onInput={(e) => setTitle(e.target.value)}
                   />
                 </label>
+              </div>
+              <div className="input-group">
                 <label htmlFor="text">
                   Xəbər haqqında məlumat
                   <textarea type="text" id="text" name="text" />
                 </label>
+                <button type="button" className="info" onClick={() => setInfo(true)}>
+                  <FontAwesomeIcon icon={faCircleInfo} />
+                </button>
               </div>
               <div className="input-group">
                 <label htmlFor="image-link">
@@ -201,6 +207,22 @@ const AddNews = () => {
           </div>
         </div>
       </div>
+      {info && (
+        <div className="modal-info">
+          <div className="modal-inner">
+            <Image
+              src="/images/text-info.png"
+              fill
+              sizes="cover"
+              alt="background"
+              style={{ objectFit: "contain" }}
+            />
+            <button onClick={() => setInfo(false)}>
+              <FontAwesomeIcon icon={faXmark} />
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
