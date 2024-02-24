@@ -143,11 +143,11 @@ export function splitSentence(text, query) {
       continue;
     }
 
-    const queryWords = query?.toLowerCase().split(" ");
+    const queryWords = replaceAzerbaijaniLetters(query)?.toLowerCase().split(" ");
 
     if (
       queryWords?.some((queryWord) =>
-        paragraph.toLowerCase().includes(queryWord)
+        replaceAzerbaijaniLetters(paragraph).toLowerCase().includes(queryWord)
       )
     ) {
       matchedParagraphs.push(paragraph + "</p>");
@@ -170,13 +170,16 @@ export function splitSentence(text, query) {
 export function highlightMatchingWords(text, query) {
   const queryWords = query.toLowerCase().split(/\s+/);
   if (text) {
-    text = text.replace(/\n/g, "").trim();
+    text = text.replace(/<p>/g, "").replace(/<\/p>/g, "")
     const words = text.split(/\s+/);
-
     const highlightedText = words
       .map((word) => {
         if (
-          queryWords.some((queryWord) => word.toLowerCase().includes(queryWord))
+          queryWords.some((queryWord) =>
+            replaceAzerbaijaniLetters(word)
+              .toLowerCase()
+              .includes(replaceAzerbaijaniLetters(queryWord))
+          )
         ) {
           return `<span class="highlight">${word}</span>`;
         } else {

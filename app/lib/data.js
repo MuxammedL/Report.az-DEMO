@@ -97,7 +97,7 @@ export const getWeather = async () => {
 //-hostName
 // export const getLinks = async () => {
 //   try {
-//     const res = await fetch("http://192.168.0.106:4000/links", {
+//     const res = await fetch("http://192.168.0.103:4000/links", {
 //       cache: "no-store",
 //     });
 //     const data = await res.json();
@@ -109,7 +109,7 @@ export const getWeather = async () => {
 // };
 // export const getPosts = async () => {
 //   try {
-//     const res = await fetch("http://192.168.0.106:4000/news", {
+//     const res = await fetch("http://192.168.0.103:4000/news", {
 //       cache: "no-store",
 //     });
 //     const data = await res.json();
@@ -122,7 +122,7 @@ export const getWeather = async () => {
 // };
 // export const getVideos = async () => {
 //   try {
-//     const res = await fetch("http://192.168.0.106:4000/videoNews");
+//     const res = await fetch("http://192.168.0.103:4000/videoNews");
 //     return res.json();
 //   } catch (err) {
 //     console.log(err);
@@ -131,7 +131,7 @@ export const getWeather = async () => {
 // };
 // export const getPost = async (slug) => {
 //   try {
-//     const res = await fetch(`http://192.168.0.106:4000/news?slug=${slug}`);
+//     const res = await fetch(`http://192.168.0.103:4000/news?slug=${slug}`);
 //     return res.json();
 //   } catch (err) {
 //     console.log(err);
@@ -141,7 +141,7 @@ export const getWeather = async () => {
 // export const getSubCategories = async (subCat) => {
 //   try {
 //     const res = await fetch(
-//       `http://192.168.0.106:4000/news?sub_category=${subCat}`
+//       `http://192.168.0.103:4000/news?sub_category=${subCat}`
 //     );
 //     const data = await res.json();
 //     data.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -153,7 +153,7 @@ export const getWeather = async () => {
 // };
 // export const getUser = async (id) => {
 //   try {
-//     const res = await fetch(`http://192.168.0.106:4000/users?id=${id}`);
+//     const res = await fetch(`http://192.168.0.103:4000/users?id=${id}`);
 //     return res.json();
 //   } catch (err) {
 //     console.log(err);
@@ -163,7 +163,7 @@ export const getWeather = async () => {
 // export const getValute = async () => {
 //   noStore();
 //   try {
-//     const res = await fetch(`http://192.168.0.106:4000/valutes`);
+//     const res = await fetch(`http://192.168.0.103:4000/valutes`);
 //     if (!res.ok) {
 //       throw new Error(`HTTP error! Status: ${res.status}`);
 //     }
