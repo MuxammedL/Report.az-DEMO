@@ -1,4 +1,5 @@
-@import "../../style/partials/mixin";
+@import "../style/partials/mixin";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css");
 .btn {
   color: #fff;
   font-size: 18px;
@@ -16,40 +17,11 @@
   height: 42px;
   font-size: 13px;
 }
-.add-news-modals {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  &.show {
-    @include Gridable($p-items: center);
-  }
-  .modals-inner {
-    background-image: repeating-linear-gradient(
-      180deg,
-      #000000 0 12px,
-      #ffffff 14px 18px
-    );
-    padding: 3px;
-    border-radius: 12px;
-    max-width: 780px;
+.add-news {
+  padding: 20px 0 50px;
+  .add-news-inner {
     position: relative;
-    .close-btn {
-      position: absolute;
-      right: 20px;
-      top: 5px;
-      font-size: 30px;
-      cursor: pointer;
-      z-index: 5;
-      color: rgb(212, 0, 0);
-    }
     form {
-      background-color: #fff;
-      padding: 20px 20px 10px;
       border-radius: 8px;
       font-weight: 500;
       width: 100%;
@@ -61,6 +33,7 @@
         display: block;
         margin-top: 15px;
       }
+      color: black;
 
       label {
         display: block;
@@ -86,7 +59,6 @@
         cursor: pointer;
         margin-top: 10px;
         padding: 6px 8px;
-        background-color: #ffffff;
         border: 1px solid #b5b5b5;
         border-radius: 6px;
         width: 165px;
@@ -144,8 +116,8 @@
         position: relative;
         &::after {
           content: "\f00c";
-          font-family: "Font Awesome 6 Free";
-          font-weight: 600;
+          font: var(--fa-font-solid);
+          font-weight: 900;
           font-size: 12px;
           position: absolute;
           top: 50%;
@@ -189,6 +161,25 @@
       top: 5px;
       right: 10px;
       cursor: pointer;
+    }
+  }
+}
+body {
+  &.darkMode {
+    .add-news {
+      .add-news-inner {
+        form {
+          color: #fff;
+          label {
+            textarea {
+              background-color: black;
+            }
+          }
+          select {
+            background-color: #000;
+          }
+        }
+      }
     }
   }
 }

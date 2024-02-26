@@ -129,6 +129,7 @@ header {
     .logo-langs {
       @include Flexible($j-cont: space-between, $a-items: center);
       padding: 15px 0;
+      position: relative;
       .menu-toggler {
         position: relative;
         width: 34px;
@@ -258,7 +259,7 @@ header {
           &.show {
             display: block;
           }
-          form{
+          form {
             height: inherit;
           }
           .search-block-inner {
@@ -267,7 +268,7 @@ header {
             &:before {
               content: "\f002";
               font-family: "Font Awesome 6 Free";
-              font-weight: 600;
+              font-weight: 900;
               font-size: 18px;
               position: absolute;
               top: 50%;
@@ -367,6 +368,84 @@ header {
     }
   }
 }
+
+.profile {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  @media (min-width: 1200px) {
+    display: block;
+  }
+  .flex {
+    gap: 1.25rem;
+  }
+  .outline_btn {
+    cursor: pointer;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #353535;
+    background-color: transparent;
+    padding: 0.375rem 1.25rem;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #353535;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+      background-color: #353535;
+      color: rgb(255 255 255);
+    }
+  }
+}
+.black_btn {
+  background-color: #353535;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  justify-content: center;
+  border: 1px solid rgb(0 0 0);
+  padding: 0.375rem 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(255 255 255);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+  }
+}
+.rounded-full {
+  border-radius: 50%;
+}
+.side-profile {
+  justify-content: center;
+  .black_btn {
+    width: 100%;
+  }
+  .side-profile-inner {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dropdown {
+    text-align: center;
+    width: 100%;
+    a {
+      display: block;
+      padding: 13px 0;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      &:last-child {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
 .content-overlay {
   position: fixed;
   top: 0;
@@ -425,6 +504,14 @@ body {
               border: 1px solid #353535;
             }
           }
+        }
+      }
+    }
+    .profile {
+      .outline_btn {
+        background-color: #f2f2f2;
+        &:hover {
+          background-color: #353535;
         }
       }
     }

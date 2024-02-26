@@ -17,8 +17,20 @@ import { useEffect, useState, useRef } from "react";
 import Links from "./links/Links";
 import { useRouter } from "next/navigation";
 import { getValute, getWeather } from "@/app/lib/data";
-
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Header = () => {
+  const { data: session } = useSession();
+
+  const [providers, setProviders] = useState(null);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
+  const isLogged = true;
   const [windSpeed, setWindSpeed] = useState();
   const [celsius, setCelsius] = useState();
   const [valute, setValute] = useState();
@@ -29,6 +41,7 @@ const Header = () => {
   const [isSearching, setSearching] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
+
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", isDarkMode ? "light" : "dark");
     const body = document.querySelector("body");
@@ -84,8 +97,6 @@ const Header = () => {
       console.error("Error fetching valute:", error);
     }
   };
-
- 
 
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
@@ -327,6 +338,49 @@ const Header = () => {
                       )}
                     </Link>
                   </div>
+                  <div className="profile">
+                    {session?.user ? (
+                      <div className="flex gap-3 md:gap-5">
+                        <Link href="/add-news" className="black_btn">
+                          Xəbər Əlavə Et
+                        </Link>
+
+                        <button
+                          type="button"
+                          onClick={signOut}
+                          className="outline_btn"
+                        >
+                          Cıxış et
+                        </button>
+
+                        <Link href="/profile">
+                          <Image
+                            src={session?.user.image}
+                            width={37}
+                            height={37}
+                            className="rounded-full"
+                            alt="profile"
+                          />
+                        </Link>
+                      </div>
+                    ) : (
+                      <>
+                        {providers &&
+                          Object.values(providers).map((provider) => (
+                            <button
+                              type="button"
+                              key={provider.name}
+                              onClick={() => {
+                                signIn(provider.id);
+                              }}
+                              className="black_btn"
+                            >
+                              Giriş et
+                            </button>
+                          ))}
+                      </>
+                    )}
+                  </div>
                   <div className="theme-switch">
                     <button
                       className="switcher"
@@ -376,6 +430,58 @@ const Header = () => {
           className={`side-menu ${isClickedMenu ? "show" : ""}`}
           onClick={handleSideClick}
         >
+          <div className="side-profile flex">
+            {session?.user ? (
+              <div className="side-profile-inner flex">
+                <Image
+                  src={session?.user.image}
+                  width={37}
+                  height={37}
+                  className="rounded-full cursor-pointer"
+                  alt="profile"
+                />
+                <div className="dropdown">
+                  <Link
+                    href="/profile"
+                    className="dropdown_link"
+                    onClick={() => handleSideClick(false)}
+                  >
+                    Profilim
+                  </Link>
+                  <Link
+                    href="/add-news"
+                    className="dropdown_link"
+                    onClick={() => handleSideClick(false)}
+                  >
+                    Xəbər Əlavə Et
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => signOut()}
+                    className="black_btn"
+                  >
+                    Cıxış et
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <button
+                      type="button"
+                      key={provider.name}
+                      onClick={() => {
+                        signIn(provider.id);
+                      }}
+                      className="black_btn"
+                    >
+                      Giriş et
+                    </button>
+                  ))}
+              </>
+            )}
+          </div>
           <ul className="mobile-menu">
             <Links />
           </ul>

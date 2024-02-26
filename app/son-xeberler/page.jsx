@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getPosts } from "../lib/data";
 import "./_latestNews.scss";
 import LatestNewsPosts from "./LatestNewsPosts/LatestNewsPosts";
-import AddNews from "../components/addNews/addNews";
 export async function generateMetadata() {
   return {
     title: "Son xəbərlər",
@@ -16,10 +15,7 @@ const LatestNewsPage = async () => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <div className="heading">
-                <h1 className="page-title">Son xəbərlər</h1>
-                <AddNews />
-              </div>
+              <h1 className="page-title">Son xəbərlər</h1>
               <div className="filter-links">
                 <ul>
                   <li>
