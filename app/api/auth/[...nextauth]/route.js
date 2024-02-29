@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/user";
 import { connectToDB } from "@/utils/database";
+import { replaceAzerbaijaniLetters } from "@/app/lib/functions";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -14,7 +15,7 @@ const handler = NextAuth({
       const sessionUser = await User.findOne({
         email: session.user.email,
       });
-      session.user.id = sessionUser._id.toString();
+      session.user.id = sessionUser?._id.toString();
       return session;
     },
     async signIn({ profile }) {
@@ -28,8 +29,11 @@ const handler = NextAuth({
         if (!userExists) {
           await User.create({
             email: profile.email,
-            username: profile.name.replace(" ", "").toLowerCase(),
+            username: replaceAzerbaijaniLetters(
+              profile.name.replace(" ", "").toLowerCase()
+            ),
             image: profile.picture,
+            fullName: profile.name,
           });
         }
         return true;

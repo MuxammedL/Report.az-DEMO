@@ -2,7 +2,7 @@
 import { getLinks } from "@/app/lib/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { convertToJSON, createSlug } from "@/app/lib/functions";
+import { createSlug } from "@/app/lib/functions";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";

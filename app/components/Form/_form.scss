@@ -1,4 +1,4 @@
-@import "../style/partials/mixin";
+@import "../../style/partials/mixin";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css");
 .btn {
   color: #fff;
@@ -16,6 +16,10 @@
   white-space: nowrap;
   height: 42px;
   font-size: 13px;
+}
+.form-title{
+  text-align: center;
+  font-weight: 600;
 }
 .add-news {
   padding: 20px 0 50px;
@@ -145,10 +149,10 @@
   @include Gridable($p-items: center);
   .modal-inner {
     position: relative;
-    width: 300px;
+    width: 280px;
     height: 100px;
     @media (min-width: 768px) {
-      height: 150px;
+      height: 160px;
       width: 450px;
     }
     img {

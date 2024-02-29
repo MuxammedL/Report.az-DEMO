@@ -30,7 +30,6 @@ const Header = () => {
       setProviders(res);
     })();
   }, []);
-  const isLogged = true;
   const [windSpeed, setWindSpeed] = useState();
   const [celsius, setCelsius] = useState();
   const [valute, setValute] = useState();
@@ -89,7 +88,9 @@ const Header = () => {
 
   const fetchData = async () => {
     try {
-      setValute(await getValute());
+      const response = await fetch(`/api/valutes`);
+      const dt = await response.json();
+      setValute(dt);
       const data = await getWeather();
       setCelsius(Math.round(data.main.temp));
       setWindSpeed(Math.round(data.wind.speed));
@@ -184,8 +185,8 @@ const Header = () => {
                       />
                       <ul className="valutes">
                         {valute &&
-                          Object.entries(valute).map(([currency, value]) => (
-                            <li key={currency}>{`${currency} - ${value}`}</li>
+                          valute.map((item, i) => (
+                            <li key={i}>{`${item.valute}`}</li>
                           ))}
                       </ul>
                     </Link>
@@ -353,7 +354,7 @@ const Header = () => {
                           Cıxış et
                         </button>
 
-                        <Link href="/profile">
+                        <Link href="/author">
                           <Image
                             src={session?.user.image}
                             width={37}
@@ -442,7 +443,7 @@ const Header = () => {
                 />
                 <div className="dropdown">
                   <Link
-                    href="/profile"
+                    href="/author"
                     className="dropdown_link"
                     onClick={() => handleSideClick(false)}
                   >

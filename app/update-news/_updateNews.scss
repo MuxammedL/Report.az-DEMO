@@ -1,0 +1,44 @@
+.remove-news {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.7);
+    @include Gridable($p-items: center);
+    .inner-side {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      h3 {
+        font-size: 24px;
+      }
+      .buttons {
+        @include Flexible($a-items: center, $j-cont: space-between, $gap: 15px);
+        margin-top: 10px;
+        button {
+          width: 100%;
+          font-weight: 600;
+          color: #fff;
+          background-color: #353535;
+          border: 1px solid #f2f2f2;
+          padding: 12px;
+          font-size: 18px;
+          cursor: pointer;
+          transition: all 0.2s ease-in;
+          &:hover {
+            background-color: hsl(0, 0%, 9%);;
+          }
+        }
+        .cancel {
+          background-color: #ffffff;
+          border: 1px solid #353535;
+          color: #353535;
+          &:hover {
+            background-color: #ececec;
+          }
+        }
+      }
+    }
+  }

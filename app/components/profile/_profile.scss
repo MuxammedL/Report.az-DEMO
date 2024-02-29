@@ -1,0 +1,23 @@
+.author-block {
+  justify-content: space-between;
+  margin: 0 0 30px;
+  .name-position {
+    max-width: calc(100% - 60px);
+    .name {
+      font-weight: bold;
+      font-size: 26px;
+      letter-spacing: 0.7px;
+      margin: 0 0 5px;
+    }
+  }
+  .thumb {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    @media (min-width: 576px) {
+      width: 85px;
+      height: 85px;
+    }
+  }
+}

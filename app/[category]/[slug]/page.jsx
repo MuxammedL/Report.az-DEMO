@@ -22,10 +22,9 @@ import "./_singlePage.scss";
 import NotFound from "@/app/components/NotFound/not-found";
 export async function generateMetadata({ params: { slug } }) {
   const post = await getPost(slug);
-  if (post.length > 0) {
-    const [item] = post;
+  if (post?.length > 0) {
     return {
-      title: item.title,
+      title: post.title,
     };
   } else {
     return {
@@ -37,23 +36,22 @@ export async function generateMetadata({ params: { slug } }) {
 const SinglePost = async ({ params }) => {
   const { slug } = params;
   const post = await getPost(slug);
-  const [item] = post;
   return (
     <>
-      {item ? (
+      {post ? (
         <section className="news-inner-page pt-20">
           <div className="container">
             <div className="row">
               <div className="col-lg-8">
                 <div className="news-wrapper">
                   <div className="selected-news">
-                    <h1 className="news-title">{item.title}</h1>
+                    <h1 className="news-title">{post.title}</h1>
                     <div className="category-date">
                       <Link
                         className="news-category"
-                        href={`/${createSlug(item.sub_category)}`}
+                        href={`/${createSlug(post.sub_category)}`}
                       >
-                        {item.sub_category}
+                        {post.sub_category}
                       </Link>
                       <div className="news-date">
                         <span>
@@ -62,17 +60,17 @@ const SinglePost = async ({ params }) => {
                             width={13.3}
                             height={14}
                           />
-                          {formatDate(item.date)}
+                          {formatDate(post.date)}
                         </span>
-                        <span>{getTimeFromISODate(item.date)}</span>
+                        <span>{getTimeFromISODate(post.date)}</span>
                       </div>
                     </div>
                     <div className="news-cover">
                       <div className="image">
                         <Image
-                          src={item.image}
-                          alt={item.title}
-                          title={item.title}
+                          src={post.image}
+                          alt={post.title}
+                          title={post.title}
                           width="0"
                           height="0"
                           sizes="100vw"
@@ -83,7 +81,7 @@ const SinglePost = async ({ params }) => {
                     <div
                       className="editor-text"
                       dangerouslySetInnerHTML={{
-                        __html: `${convertToJSON(item.text)}`,
+                        __html: `${convertToJSON(post.text)}`,
                       }}
                     ></div>
                     <div className="subs-in-social subs-whatsapp">
@@ -145,7 +143,7 @@ const SinglePost = async ({ params }) => {
                         </li>
                       </ul>
                       <Suspense fallback={<div>Loading...</div>}>
-                        <PostUser userId={item.userId} />
+                        <PostUser userId={post.userId} post={post} />
                       </Suspense>
                     </div>
                   </div>

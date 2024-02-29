@@ -7,7 +7,9 @@ const Links = () => {
   const [links, setLinks] = useState();
   const fetchData = async () => {
     try {
-      setLinks(await getLinks());
+      const response = await fetch(`/api/links`);
+      const data = await response.json();
+      setLinks(data);
     } catch (error) {
       console.error("Error fetching links:", error);
     }

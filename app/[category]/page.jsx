@@ -2,8 +2,7 @@ import Link from "next/link";
 import { getLinks, getPosts } from "../lib/data";
 import "./_categoryPage.scss";
 import NotFound from "../components/NotFound/not-found";
-import { createSlug, formatDate, getTimeFromISODate } from "../lib/functions";
-import Image from "next/image";
+import NewsCard from "../components/newsCard/NewsCard";
 
 export async function generateMetadata({ params: { category } }) {
   const links = await getLinks();
@@ -92,46 +91,7 @@ const CategoryPage = async ({ params: { category } }) => {
                 {subCategoryLink && <h1 className="page-title">{title}</h1>}
                 <div className="new-list row">
                   {sortedPosts.map((item) => (
-                    <div
-                      key={item.id}
-                      className="col-lg-3 col-md-4 col-sm-6 infinity-item"
-                    >
-                      <div className="news-block">
-                        <div className="image">
-                          <Link
-                            href={`/${createSlug(item.sub_category)}/${
-                              item.slug
-                            }`}
-                            className="image-link"
-                          >
-                            <Image
-                              src={item.image}
-                              alt={item.title}
-                              title={item.title}
-                              width="0"
-                              height="0"
-                              sizes="100vw"
-                              style={{ width: "100%", height: "auto" }}
-                            />
-                          </Link>
-                        </div>
-                        <div className="info">
-                          <Link
-                            className="title"
-                            href={`/${createSlug(item.sub_category)}/${
-                              item.slug
-                            }`}
-                            title={item.title}
-                          >
-                            {item.title}
-                          </Link>
-                          <div className="news-date">
-                            <span>{formatDate(item.date)}</span>
-                            <span>{getTimeFromISODate(item.date)}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <NewsCard post={item} key={item.id} />
                   ))}
                 </div>
               </div>

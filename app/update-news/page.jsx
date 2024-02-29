@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createSlug } from "@/app/lib/functions";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Form from "../components/Form/Form";
-import { useSession } from "next-auth/react";
-const AddNews = () => {
+const UpdateNews = () => {
   const router = useRouter();
-  const { data: session } = useSession();
+  const searchParams = useSearchParams();
+  const newsId = searchParams.get("id");
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     category: "",
@@ -16,17 +16,37 @@ const AddNews = () => {
     image: "",
     important: false,
   });
-  const createNews = async (e) => {
+
+  useEffect(() => {
+    const getPromptDetails = async () => {
+      const response = await fetch(`/api/news/${newsId}`);
+      const data = await response.json();
+
+      setPost({
+        category: data.category,
+        title: data.title,
+        text: data.text,
+        image: data.image,
+        important: data.important,
+        sub_category: data.sub_category,
+      });
+    };
+
+    if (newsId) getPromptDetails();
+  }, [newsId]);
+
+  const updateNews = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+
+    if (!newsId) return alert("Missing PromptId!");
     const currentDate = new Date();
     const isoDate = currentDate.toISOString();
     try {
-      const response = await fetch("/api/news/new", {
-        method: "POST",
+      const response = await fetch(`/api/news/${newsId}`, {
+        method: "PATCH",
         body: JSON.stringify({
           category: post.category,
-          userId: session?.user.id,
           sub_category: post.sub_category,
           title: post.title,
           text: post.text,
@@ -36,25 +56,29 @@ const AddNews = () => {
           date: isoDate,
         }),
       });
+
       if (response.ok) {
         router.push("/");
         router.refresh();
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setSubmitting(false);
     }
   };
+  
   return (
     <>
       <Form
-        type={"Xəbər əlavə et"}
+        type={"Xəbəri redaktə et"}
         post={post}
         setPost={setPost}
         submitting={submitting}
-        handleSubmit={createNews}
+        handleSubmit={updateNews}
       />
     </>
   );
 };
 
-export default AddNews;
+export default UpdateNews;

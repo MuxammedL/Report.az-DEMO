@@ -57,8 +57,8 @@ const UrgentSwiper = ({ posts }) => {
           </Swiper>
           <marquee behavior="scroll" direction="left" scrollamount="6">
             <div className="scrollingText">
-              {posts.map((item) => (
-                <div className="news-item" key={item.id}>
+              {posts.map((item,index) => (
+                <div className="news-item" key={index}>
                   <div className="news-title">
                     <Link
                       href={`/${createSlug(item.sub_category)}/${item.slug}`}

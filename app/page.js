@@ -15,7 +15,6 @@ export default async function Home() {
   const links = await getLinks();
   return (
     <>
-    
       <section className="entrance">
         <div className="container">
           <div className="row">

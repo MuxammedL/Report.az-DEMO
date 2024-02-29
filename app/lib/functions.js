@@ -95,7 +95,7 @@ export function convertToJSON(text) {
   formattedText = formattedText.replace(/\*(.*?)\*/g, "<strong>$1</strong>");
   formattedText = formattedText.replace(/\_(.*?)\_/g, "<em>$1</em>");
   formattedText = formattedText.replace(
-    /\@!(.*?)\@/g,
+    /\@(.*?)\@/g,
     "<span style='color:red'>$1</span>"
   );
   return formattedText;

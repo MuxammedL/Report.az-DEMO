@@ -4,6 +4,8 @@
   flex-wrap: wrap;
   margin: 15px 0 0;
   width: 100%;
+  cursor: pointer;
+
 }
 .thumb {
   width: 38px;
