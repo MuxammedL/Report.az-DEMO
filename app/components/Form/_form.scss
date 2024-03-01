@@ -17,7 +17,7 @@
   height: 42px;
   font-size: 13px;
 }
-.form-title{
+.form-title {
   text-align: center;
   font-weight: 600;
 }
@@ -119,9 +119,13 @@
         border: 1px solid #000;
         position: relative;
         &::after {
-          content: "\f00c";
-          font: var(--fa-font-solid);
-          font-weight: 900;
+          content: "";
+          background-image: url("/images/check_mark.svg");
+          background-size: contain;
+          background-repeat: no-repeat;
+          font-size: 18px;
+          width: 22px;
+          height: 22px;
           font-size: 12px;
           position: absolute;
           top: 50%;
@@ -181,6 +185,9 @@ body {
           }
           select {
             background-color: #000;
+          }
+          input[type="radio"]::after {
+            background-image: url("/images/done_white_icon.svg");
           }
         }
       }

@@ -75,13 +75,12 @@
       background-color: #f6f6f6;
     }
     &::after {
-      display: inline-block;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      content: "\f30b";
-      font: var(--fa-font-solid);
-      font-weight: 900;
-      font-size: 17px;
+      content: "";
+      background-image: url("/images/arrow_icon.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 24px;
+      height: 24px;
       position: absolute;
       top: 50%;
       right: 25px;
@@ -111,6 +110,9 @@ body {
     }
     .show-all a {
       background: #353535;
+      &::after{
+        background-image: url("/images/arrow_white_icon.svg");
+      }
       &:hover {
         background: #303030;
       }

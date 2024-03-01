@@ -3,7 +3,6 @@ import { useSession } from "next-auth/react";
 import { Suspense, useEffect, useState } from "react";
 import Profile from "../components/profile/Profile";
 import { useRouter } from "next/navigation";
-import { getUser } from "../lib/data";
 
 const Author = () => {
   const { data: session } = useSession();
@@ -24,9 +23,7 @@ const Author = () => {
     router.push(`/update-news?id=${post._id}`);
   };
   const handleDelete = async (post) => {
-    const hasConfirmed = confirm(
-      "Are you sure you want to delete this prompt?"
-    );
+    const hasConfirmed = confirm("Bu xəbəri silmək istədiyinizə əminsiniz?");
 
     if (hasConfirmed) {
       try {

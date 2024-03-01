@@ -1,5 +1,4 @@
 "use client";
-import { getLinks } from "@/app/lib/data";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

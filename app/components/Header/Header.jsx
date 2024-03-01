@@ -16,13 +16,12 @@ import "./_header.scss";
 import { useEffect, useState, useRef } from "react";
 import Links from "./links/Links";
 import { useRouter } from "next/navigation";
-import { getValute, getWeather } from "@/app/lib/data";
+import { getWeather } from "@/app/lib/data";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Header = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
-  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
     (async () => {

@@ -50,10 +50,8 @@ export const PATCH = async (request, { params }) => {
 export const DELETE = async (request, { params }) => {
   try {
     await connectToDB();
-
     // Find the news by ID and remove it
-    await News.findByIdAndRemove(params.id);
-
+    await News.deleteOne({ _id: params.id });
     return new Response("News deleted successfully", { status: 200 });
   } catch (error) {
     return new Response("Error deleting news", { status: 500 });

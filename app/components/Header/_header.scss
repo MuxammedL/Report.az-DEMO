@@ -266,10 +266,13 @@ header {
             height: inherit;
             position: relative;
             &:before {
-              content: "\f002";
-              font-family: "Font Awesome 6 Free";
-              font-weight: 900;
+              content: "";
+              background-image: url("/images/search_icon.svg");
+              background-size: contain;
+              background-repeat: no-repeat;
               font-size: 18px;
+              width: 22px;
+              height: 22px;
               position: absolute;
               top: 50%;
               left: 0;
@@ -339,10 +342,13 @@ header {
       .mobile-search-inner {
         position: relative;
         &::before {
-          content: "\f002";
-          font-family: "Font Awesome 6 Free";
-          font-weight: 600;
-          font-size: 16px;
+          content: "";
+          background-image: url("/images/search_icon.svg");
+          background-size: contain;
+          background-repeat: no-repeat;
+          font-size: 18px;
+          width: 22px;
+          height: 22px;
           position: absolute;
           top: 50%;
           right: 20px;
@@ -435,10 +441,12 @@ body {
           }
         }
         .navbar {
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
           .search-block {
             .search-block-inner {
               &::before {
-                color: #fff;
+                background-image: url("/images/search_white_icon.svg");
                 opacity: 1;
               }
               input {
@@ -461,6 +469,9 @@ body {
         }
         .mobile-search {
           .mobile-search-inner {
+            &::before{
+              background-image: url("/images/search_white_icon.svg");
+            }
             input {
               color: #fff;
               background-color: black;
