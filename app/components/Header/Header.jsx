@@ -83,12 +83,18 @@ const Header = () => {
       console.error("Error fetching valute:", error);
     }
   };
-
-  useEffect(() => {
-    (async () => {
+  async function fetchAndSetProviders() {
+    try {
       const res = await getProviders();
       setProviders(res);
-    })();
+    } catch (error) {
+      console.error("Error fetching providers:", error);
+    }
+  }
+
+  useEffect(() => {
+    fetchAndSetProviders();
+
     const storedDarkMode = localStorage.getItem("darkMode");
     if (storedDarkMode) {
       setDarkMode(storedDarkMode === "dark");
