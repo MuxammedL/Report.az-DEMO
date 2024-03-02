@@ -6,15 +6,15 @@ import { useEffect, useState } from "react";
 
 const GoToTop = () => {
   const [showButton, setShowButton] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 650) {
+      setShowButton(true);
+    } else {
+      setShowButton(false);
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 650) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    };
 
     window.addEventListener("scroll", handleScroll);
 

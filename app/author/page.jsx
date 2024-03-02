@@ -37,14 +37,12 @@ const Author = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Profile
-        user={user}
-        data={posts}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-    </Suspense>
+    <Profile
+      user={user}
+      data={posts}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
+    />
   );
 };
 

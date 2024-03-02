@@ -475,7 +475,7 @@ const Header = () => {
               </>
             )}
           </div>
-          <ul className="mobile-menu">
+          <ul className="mobile-menu" onClick={() => setClickedMenu(false)}>
             <Links />
           </ul>
           <div className="mobile-search">
