@@ -41,13 +41,12 @@ const ImportantNewsSwiper = ({ posts }) => {
                   1200: { slidesPerView: 3 },
                 }}
                 spaceBetween={30}
-                loop={true}
                 navigation={{
                   nextEl: ".important-news .next-slide",
                   prevEl: ".important-news .prev-slide",
                 }}
               >
-                {sortedByImportance.map((item, index) => (
+                {sortedByImportance.slice(0, 9).map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="counted-news">
                       <div className="image">

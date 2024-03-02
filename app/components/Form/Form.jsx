@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import { faXmark, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
-const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
+const Form = ({ type, submitting, setPost, handleSubmit, post,clicked }) => {
   const [links, setLinks] = useState(null);
   const [category, setCategory] = useState(null);
   const [subCategories, setSubCategories] = useState(null);
   const [info, setInfo] = useState(false);
+
   const handleSelectChange = (e) => {
     setCategory(e.target.value);
   };
+
   useEffect(() => {
     const fetchLinks = async () => {
       try {
@@ -27,9 +29,11 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
     const radio = document.querySelector('input[name="important"]');
     radio.click();
   }, []);
+
   useEffect(() => {
     setCategory(post.category);
   }, [post]);
+
   useEffect(() => {
     setSubCategories(
       category
@@ -37,6 +41,7 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
         : null
     );
   }, [category]);
+  
   return (
     <>
       <section className="add-news">
@@ -54,6 +59,9 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
                         id="title"
                         name="title"
                         value={post.title}
+                        className={`${
+                          clicked && post.title.length == 0 ? "invalid" : ""
+                        }`}
                         onChange={(e) =>
                           setPost({ ...post, title: e.target.value })
                         }
@@ -68,6 +76,7 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
                         id="text"
                         name="text"
                         value={post.text}
+                        className={`${clicked&&post.text.length==0?"invalid":""}`}
                         onChange={(e) =>
                           setPost({ ...post, text: e.target.value })
                         }
@@ -89,6 +98,7 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
                         name="image"
                         id="image-link"
                         value={post.image}
+                        className={`${clicked&&post.image.length==0?"invalid":""}`}
                         onChange={(e) =>
                           setPost({ ...post, image: e.target.value })
                         }
@@ -102,6 +112,11 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
                         name="category"
                         id="category"
                         value={post.category}
+                        className={`${
+                          clicked && post.category.length == 0
+                            ? "invalid"
+                            : ""
+                        }`}
                         onChange={(e) => {
                           setPost({ ...post, category: e.target.value });
                           handleSelectChange(e);
@@ -122,6 +137,7 @@ const Form = ({ type, submitting, setPost, handleSubmit, post }) => {
                         name="sub_category"
                         id="sub_category"
                         value={post.sub_category}
+                        className={`${clicked&&post.sub_category.length==0?"invalid":""}`}
                         onChange={(e) =>
                           setPost({ ...post, sub_category: e.target.value })
                         }

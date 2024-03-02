@@ -20,15 +20,7 @@ import { getWeather } from "@/app/lib/data";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Header = () => {
   const { data: session } = useSession();
-
   const [providers, setProviders] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const res = await getProviders();
-      setProviders(res);
-    })();
-  }, []);
   const [windSpeed, setWindSpeed] = useState();
   const [celsius, setCelsius] = useState();
   const [valute, setValute] = useState();
@@ -79,12 +71,6 @@ const Header = () => {
     }, 0);
   };
 
-  const handleSideClick = (e) => {
-    if (e.target.tagName == "A") {
-      setClickedMenu((prev) => !prev);
-    }
-  };
-
   const fetchData = async () => {
     try {
       const response = await fetch(`/api/valutes`);
@@ -99,6 +85,10 @@ const Header = () => {
   };
 
   useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
     const storedDarkMode = localStorage.getItem("darkMode");
     if (storedDarkMode) {
       setDarkMode(storedDarkMode === "dark");
@@ -426,10 +416,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div
-          className={`side-menu ${isClickedMenu ? "show" : ""}`}
-          onClick={handleSideClick}
-        >
+        <div className={`side-menu ${isClickedMenu ? "show" : ""}`}>
           <div className="side-profile flex">
             {session?.user ? (
               <div className="side-profile-inner flex">
@@ -444,14 +431,14 @@ const Header = () => {
                   <Link
                     href="/author"
                     className="dropdown_link"
-                    onClick={() => handleSideClick(false)}
+                    onClick={() => setClickedMenu(false)}
                   >
                     Profilim
                   </Link>
                   <Link
                     href="/add-news"
                     className="dropdown_link"
-                    onClick={() => handleSideClick(false)}
+                    onClick={() => setClickedMenu(false)}
                   >
                     Xəbər Əlavə Et
                   </Link>

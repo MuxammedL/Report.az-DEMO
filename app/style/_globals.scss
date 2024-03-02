@@ -301,6 +301,9 @@ main {
 }
 .news-list {
   margin: 0 0 50px;
+  &[class*=col-] {
+    margin: 0 0 50px;
+}
 }
 .news-tags {
   padding: 0 0 15px;

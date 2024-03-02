@@ -8,6 +8,7 @@ const AddNews = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const [submitting, setSubmitting] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const [post, setPost] = useState({
     category: "",
     sub_category: "",
@@ -18,36 +19,43 @@ const AddNews = () => {
   });
   const createNews = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
+    setClicked(true);
     const currentDate = new Date();
     const isoDate = currentDate.toISOString();
-    try {
-      const response = await fetch("/api/news/new", {
-        method: "POST",
-        body: JSON.stringify({
-          category: post.category,
-          userId: session?.user.id,
-          sub_category: post.sub_category,
-          title: post.title,
-          text: post.text,
-          image: post.image,
-          important: post.important,
-          slug: createSlug(post.title),
-          date: isoDate,
-        }),
-      });
-      if (response.ok) {
-        router.push("/");
-        router.refresh();
+    const keysWithEmptyValues = Object.keys(post).filter(
+      (key) => post[key] === ""
+    );
+    if (!(keysWithEmptyValues.length > 0)) {
+      setSubmitting(true);
+      try {
+        const response = await fetch("/api/news/new", {
+          method: "POST",
+          body: JSON.stringify({
+            category: post.category,
+            userId: session?.user.id,
+            sub_category: post.sub_category,
+            title: post.title,
+            text: post.text,
+            image: post.image,
+            important: post.important,
+            slug: createSlug(post.title),
+            date: isoDate,
+          }),
+        });
+        if (response.ok) {
+          router.push("/");
+          router.refresh();
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
   return (
     <>
       <Form
         type={"Xəbər əlavə et"}
+        clicked={clicked}
         post={post}
         setPost={setPost}
         submitting={submitting}

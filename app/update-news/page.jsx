@@ -8,6 +8,7 @@ const UpdateNews = () => {
   const searchParams = useSearchParams();
   const newsId = searchParams.get("id");
   const [submitting, setSubmitting] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const [post, setPost] = useState({
     category: "",
     sub_category: "",
@@ -37,43 +38,49 @@ const UpdateNews = () => {
 
   const updateNews = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
-
+    setClicked(true);
     if (!newsId) return alert("Missing PromptId!");
     const currentDate = new Date();
     const isoDate = currentDate.toISOString();
-    try {
-      const response = await fetch(`/api/news/${newsId}`, {
-        method: "PATCH",
-        body: JSON.stringify({
-          category: post.category,
-          sub_category: post.sub_category,
-          title: post.title,
-          text: post.text,
-          image: post.image,
-          important: post.important,
-          slug: createSlug(post.title),
-          date: isoDate,
-        }),
-      });
+    const keysWithEmptyValues = Object.keys(post).filter(
+      (key) => post[key] === ""
+    );
+    if (!(keysWithEmptyValues.length > 0)) {
+      setSubmitting(true);
+      try {
+        const response = await fetch(`/api/news/${newsId}`, {
+          method: "PATCH",
+          body: JSON.stringify({
+            category: post.category,
+            sub_category: post.sub_category,
+            title: post.title,
+            text: post.text,
+            image: post.image,
+            important: post.important,
+            slug: createSlug(post.title),
+            date: isoDate,
+          }),
+        });
 
-      if (response.ok) {
-        router.push("/");
-        router.refresh();
+        if (response.ok) {
+          router.push("/");
+          router.refresh();
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setSubmitting(false);
       }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setSubmitting(false);
     }
   };
-  
+
   return (
     <>
       <Form
         type={"Xəbəri redaktə et"}
         post={post}
         setPost={setPost}
+        clicked={clicked}
         submitting={submitting}
         handleSubmit={updateNews}
       />
