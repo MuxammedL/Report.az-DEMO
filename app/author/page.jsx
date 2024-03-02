@@ -18,6 +18,7 @@ const Author = () => {
   };
   useEffect(() => {
     if (session?.user.id) fetchPosts();
+    console.log(session?.user.id)
   }, []);
   const handleEdit = (post) => {
     router.push(`/update-news?id=${post._id}`);
@@ -37,12 +38,14 @@ const Author = () => {
   };
 
   return (
-    <Profile
-      user={user}
-      data={posts}
-      handleEdit={handleEdit}
-      handleDelete={handleDelete}
-    />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Profile
+        user={user}
+        data={posts}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
+    </Suspense>
   );
 };
 
