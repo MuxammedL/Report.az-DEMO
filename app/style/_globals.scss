@@ -162,8 +162,6 @@ body {
   display: none;
 }
 .news-item {
-  padding: 0 0 15px;
-  margin: 0 0 15px;
   border-bottom: 1px solid #f2f2f2;
   transition: background 0.5s ease;
   position: relative;
@@ -172,6 +170,10 @@ body {
   }
   .highlight {
     background: #fff700;
+  }
+  @media (min-width: 576px) {
+    padding: 0 0 15px;
+    margin: 0 0 15px;
   }
   @include Flexible($f-wrap: wrap);
   .info {
@@ -301,9 +303,9 @@ main {
 }
 .news-list {
   margin: 0 0 50px;
-  &[class*=col-] {
+  &[class*="col-"] {
     margin: 0 0 50px;
-}
+  }
 }
 .news-tags {
   padding: 0 0 15px;
