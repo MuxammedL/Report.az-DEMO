@@ -18,7 +18,6 @@ const Author = () => {
   };
   useEffect(() => {
     if (session?.user.id) fetchPosts();
-    console.log(session?.user.id)
   }, []);
   const handleEdit = (post) => {
     router.push(`/update-news?id=${post._id}`);
