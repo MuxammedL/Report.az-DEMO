@@ -63,6 +63,47 @@ export default async function Home() {
                   ))}
                 </div>
                 <div className="small-news">
+                  {posts.slice(0, 2).map((item) => (
+                    <div className="mobile-small-news">
+                      <div className="small-news-item" key={item.id}>
+                        <div className="image">
+                          <Link
+                            href={`/${createSlug(item.sub_category)}/${
+                              item.slug
+                            }`}
+                            className="image-link"
+                          >
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              title={item.title}
+                              width="0"
+                              height="0"
+                              sizes="100vw"
+                              style={{ width: "100%", height: "auto" }}
+                            />
+                          </Link>
+                        </div>
+                        <div className="info">
+                          <Link
+                            className="title"
+                            href={`/${createSlug(item.sub_category)}/${
+                              item.slug
+                            }`}
+                            title={item.link}
+                          >
+                            {item.title.length < 74
+                              ? item.title
+                              : `${item.title.slice(0, 74)}...`}
+                          </Link>
+                          <div className="news-date">
+                            <span>{formatDate(item.date)}</span>
+                            <span>{getTimeFromISODate(item.date)}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                   {posts.slice(2, 14).map((item) => (
                     <div className="small-news-item" key={item.id}>
                       <div className="image">

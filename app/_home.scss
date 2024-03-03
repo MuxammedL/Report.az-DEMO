@@ -16,7 +16,10 @@
     .main-news {
       margin-top: 15px;
       .actual-news-blocks {
-        @include Flexible($j-cont: space-between);
+        display: none;
+        @media (min-width: 425px) {
+          @include Flexible($j-cont: space-between);
+        }
         .actual-news-block {
           width: calc(50% - 5px);
           height: 325px;
@@ -70,6 +73,11 @@
         @include Gridable($columns: repeat(2, 1fr));
         margin-left: -5px;
         margin-right: -5px;
+        .mobile-small-news {
+          @media (min-width: 425px) {
+            display: none;
+          }
+        }
         .small-news-item {
           font-size: 80%;
           font-weight: 400;
@@ -141,4 +149,3 @@
     }
   }
 }
-
