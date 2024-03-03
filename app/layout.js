@@ -1,4 +1,5 @@
 import { Montserrat } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import GoToTop from "./components/goToTop/goToTop";
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
+        <SpeedInsights />
         <Provider>
           <Header />
           <main>
