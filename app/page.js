@@ -64,8 +64,8 @@ export default async function Home() {
                 </div>
                 <div className="small-news">
                   {posts.slice(0, 2).map((item) => (
-                    <div className="mobile-small-news">
-                      <div className="small-news-item" key={item.id}>
+                    <div className="mobile-small-news"  key={item.id}>
+                      <div className="small-news-item">
                         <div className="image">
                           <Link
                             href={`/${createSlug(item.sub_category)}/${
