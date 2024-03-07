@@ -330,10 +330,11 @@ header {
     .mobile-menu {
       text-align: center;
       li {
-        padding: 13px 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         a {
+          padding: 13px 0;
           font-weight: 600;
+          display: block;
         }
       }
     }
@@ -469,7 +470,7 @@ body {
         }
         .mobile-search {
           .mobile-search-inner {
-            &::before{
+            &::before {
               background-image: url("/images/search_white_icon.svg");
             }
             input {
