@@ -16,8 +16,7 @@ module.exports = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "static.report.az",
-        pathname: "**",
+        hostname: "**",
       },
     ],
   },
