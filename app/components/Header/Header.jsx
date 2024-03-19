@@ -18,9 +18,10 @@ import Links from "./links/Links";
 import { useRouter } from "next/navigation";
 import { getWeather } from "@/app/lib/data";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { useThemeDetector } from "@/app/lib/functions";
 
-
+const useThemeDetector = () => {
+  return isDarkTheme;
+};
 
 const Header = () => {
   const { data: session } = useSession();
@@ -35,7 +36,17 @@ const Header = () => {
   const [isSearching, setSearching] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
-  const isDarkTheme = useThemeDetector();
+  const getMatchMedia = () =>
+    window && window.matchMedia("(prefers-color-scheme:dark)");
+  const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
+  const mqListener = (e) => {
+    setIsDarkTheme(e.matches);
+  };
+  useEffect(() => {
+    const mq = getMatchMedia();
+    mq.addListener(mqListener);
+    return () => mq.removeListener(mqListener);
+  }, []);
 
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", isDarkMode ? "light" : "dark");
