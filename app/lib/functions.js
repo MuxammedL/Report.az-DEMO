@@ -143,7 +143,9 @@ export function splitSentence(text, query) {
       continue;
     }
 
-    const queryWords = replaceAzerbaijaniLetters(query)?.toLowerCase().split(" ");
+    const queryWords = replaceAzerbaijaniLetters(query)
+      ?.toLowerCase()
+      .split(" ");
 
     if (
       queryWords?.some((queryWord) =>
@@ -170,7 +172,7 @@ export function splitSentence(text, query) {
 export function highlightMatchingWords(text, query) {
   const queryWords = query.toLowerCase().split(/\s+/);
   if (text) {
-    text = text.replace(/<p>/g, "").replace(/<\/p>/g, "")
+    text = text.replace(/<p>/g, "").replace(/<\/p>/g, "");
     const words = text.split(/\s+/);
     const highlightedText = words
       .map((word) => {
@@ -191,3 +193,17 @@ export function highlightMatchingWords(text, query) {
     return highlightedText;
   }
 }
+export const useThemeDetector = () => {
+  const getMatchMedia = () =>
+    window && window.matchMedia("(prefers-color-scheme:dark)");
+  const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
+  const mqListener = (e) => {
+    setIsDarkTheme(e.matches);
+  };
+  useEffect(() => {
+    const mq = getMatchMedia();
+    mq.addListener(mqListener);
+    return () => mq.removeListener(mqListener);
+  }, []);
+  return isDarkTheme;
+};
