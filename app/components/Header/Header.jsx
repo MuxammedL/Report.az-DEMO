@@ -19,21 +19,22 @@ import { useRouter } from "next/navigation";
 import { getWeather } from "@/app/lib/data";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
-const Header = () => {
-  const useThemeDetector = () => {
-    const getMatchMedia = () =>
-      window.matchMedia("(prefers-color-scheme:dark)");
-    const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
-    const mqListener = (e) => {
-      setIsDarkTheme(e.matches);
-    };
-    useEffect(() => {
-      const mq = getMatchMedia();
-      mq.addListener(mqListener);
-      return () => mq.removeListener(mqListener);
-    }, []);
-    return isDarkTheme;
+const useThemeDetector = () => {
+  const getMatchMedia = () =>
+    window && window.matchMedia("(prefers-color-scheme:dark)");
+  const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
+  const mqListener = (e) => {
+    setIsDarkTheme(e.matches);
   };
+  useEffect(() => {
+    const mq = getMatchMedia();
+    mq.addListener(mqListener);
+    return () => mq.removeListener(mqListener);
+  }, []);
+  return isDarkTheme;
+};
+
+const Header = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [windSpeed, setWindSpeed] = useState();
