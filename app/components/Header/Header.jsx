@@ -36,16 +36,25 @@ const Header = () => {
   const [isSearching, setSearching] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
+
   const getMatchMedia = () =>
-    window && window.matchMedia("(prefers-color-scheme:dark)");
-  const [isDarkTheme, setIsDarkTheme] = useState(getMatchMedia().matches);
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-color-scheme: dark)")
+      : null;
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    getMatchMedia()?.matches ?? false
+  );
+
   const mqListener = (e) => {
     setIsDarkTheme(e.matches);
   };
+
   useEffect(() => {
     const mq = getMatchMedia();
-    mq.addListener(mqListener);
-    return () => mq.removeListener(mqListener);
+    if (mq) {
+      mq.addListener(mqListener);
+      return () => mq.removeListener(mqListener);
+    }
   }, []);
 
   const toggleDarkMode = () => {
