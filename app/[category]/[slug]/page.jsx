@@ -20,9 +20,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "./_singlePage.scss";
 import NotFound from "@/app/components/NotFound/not-found";
-export async function generateMetadata({ params: { slug } }) {
+export async function generateMetadata({ params }) {
+  const { slug } = params;
   const post = await getPost(slug);
-  if (post?.length > 0) {
+  if (post) {
     return {
       title: post.title,
     };
